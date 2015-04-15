@@ -127,4 +127,9 @@ function tag_archive_filter($query) {
 }
 add_action('pre_get_posts','tag_archive_filter');
 
+// METADATA FOR UPLOADS
+
+get_template_part( 'lib/iptc' );
+
+
 ?>

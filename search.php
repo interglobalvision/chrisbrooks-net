@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-$search_types = array('post', 'project', 'page');
+$search_types = array('post', 'project', 'page', 'attachment');
 
 $search_term =  $_GET['s'];
 

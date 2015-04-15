@@ -25,7 +25,13 @@ if ($posts) {
 
     <article <?php post_class('col col6'); ?> id="post-<?php the_ID(); ?>">
 
-      <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+      <a href="<?php the_permalink() ?>">
+<?php
+the_title();
+if (!empty($meta['_igv_year'][0])) {
+  echo ', ' . $meta['_igv_year'][0];
+}
+?></a>
 
     </article>
 
