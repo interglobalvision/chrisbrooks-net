@@ -32,7 +32,9 @@ if( have_posts() ) {
   }
 } else {
 ?>
-    <article class="u-alert"><?php _e('Sorry, no posts matched your criteria :{'); ?></article>
+    <div class="container">
+      <article class="col col12 u-alert"><?php _e('Sorry, no posts matched your criteria :{'); ?></article>
+    </div>
 <?php
 } ?>
   <!-- end posts -->
