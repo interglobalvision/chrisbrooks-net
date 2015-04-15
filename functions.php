@@ -116,6 +116,12 @@ function is_single_type($type, $post) {
   }
 }
 
+function pr($data){
+  echo "<pre>";
+  print_r($data);
+  echo "</pre>";
+}
+
 // PRE GET POSTS
 
 function tag_archive_filter($query) {
