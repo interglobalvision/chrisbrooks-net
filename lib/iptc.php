@@ -17,7 +17,8 @@ function igv_read_image_keywords( $file ) {
 
 			if ( ! empty( $iptc["2#025"] ) ) {
 
-  			 $keywords = '';
+/*
+  		  $keywords = '';
 
   			foreach ($iptc["2#025"] as $keyword) {
     			if ($keywords === '') {
@@ -25,6 +26,13 @@ function igv_read_image_keywords( $file ) {
     			} else {
       			$keywords = $keywords . ', ' . $keyword;
     			}
+  			}
+*/
+
+        $keywords = [];
+
+  			foreach ($iptc["2#025"] as $keyword) {
+    		  $keywords[] = $keyword;
   			}
 
 		  }
@@ -61,9 +69,15 @@ function get_upload_metatags($id){
 
   $keywords = igv_read_image_keywords(get_attached_file($id));
 
-/*   error_log($keywords); */
+  if ($keywords) {
 
-  wp_set_post_terms( $id, $keywords, 'post_tag', false );
+    $term_taxonomy_ids = wp_set_object_terms( $id, $keywords, 'post_tag', false );
+
+    if ( is_wp_error( $term_taxonomy_ids ) ) {
+      error_log((string)$term_taxonomy_ids);
+    }
+
+  }
 
 }
 add_action( 'add_attachment', 'get_upload_metatags' );

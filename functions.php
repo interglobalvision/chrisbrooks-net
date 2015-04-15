@@ -121,7 +121,7 @@ function is_single_type($type, $post) {
 function tag_archive_filter($query) {
   if ( !is_admin() && $query->is_main_query() ) {
     if ($query->is_tag) {
-      $query->set('post_type', array( 'post', 'project' ));
+      $query->set('post_type', array( 'post', 'project', 'attachment' ));
     }
   }
 }
