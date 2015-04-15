@@ -17,6 +17,7 @@ $search_tag = new WP_Query( array (
   'fields' => 'ids',
   'post_type' => $search_types,
   'tag' => $search_term,
+  'post_status' => array('published', 'inherit')
 ) );
 
 // If any of the video searches have posts
@@ -25,7 +26,7 @@ if( $search_default->have_posts() || $search_tag->have_posts() ) {
 /*
   var_dump($search_default->posts);
   var_dump($search_tag->posts);
-*/
+ */
 
   // Merge IDs
   $search_ids = array_merge( $search_default->posts, $search_tag->posts );
@@ -35,10 +36,11 @@ if( $search_default->have_posts() || $search_tag->have_posts() ) {
     'post_type' => $search_types,
     'post__in'  => $search_ids,
     'orderby'   => 'date',
-    'order'     => 'DESC'
+    'order'     => 'DESC',
+    'post_status' => array('published', 'inherit')
   ) );
 
-/*   var_dump($search); */
+  /*   var_dump($search); */
 
 } else {
 
@@ -61,8 +63,17 @@ if( $search->have_posts() ) {
     $search->the_post();
 ?>
 
+
     <article <?php post_class('percent-col into-3'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink() ?>">
+    <?php 
+    if( get_post_type() == 'attachment') {
+      $thumb = wp_get_attachment_image_src( $post->ID, 'thumbnail' );
+    ?>
+        <img src="<?php echo $thumb[0];?>">
+    <?php
+    }
+    ?>
         <?php the_post_thumbnail(); ?>
       </a>
     </article>
@@ -85,5 +96,5 @@ if( $search->have_posts() ) {
 </main>
 
 <?php
-get_footer();
+  get_footer();
 ?>
