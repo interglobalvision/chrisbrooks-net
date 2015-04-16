@@ -39,7 +39,6 @@ function register_cpt_project() {
         'hierarchical' => false,
 
         'supports' => array( 'title', 'thumbnail' ),
-/*         'taxonomies' => array( 'post_tag' ), */
 
         'public' => true,
         'show_ui' => true,
@@ -83,6 +82,7 @@ function register_cpt_photograph() {
         'hierarchical' => false,
 
         'supports' => array( 'title', 'thumbnail' ),
+        'taxonomies' => array( 'post_tag' ),
 
         'public' => true,
         'show_ui' => true,

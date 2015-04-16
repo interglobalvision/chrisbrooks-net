@@ -135,7 +135,7 @@ function pr($data){
 function tag_archive_filter($query) {
   if ( !is_admin() && $query->is_main_query() ) {
     if ($query->is_tag) {
-      $query->set('post_type', array( 'post', 'project', 'attachment' ));
+      $query->set('post_type', array( 'post', 'project', 'photograph' ));
     }
   }
 }
@@ -186,6 +186,27 @@ function set_gallery_length( $post_id ) {
 
 }
 add_action( 'save_post', 'set_gallery_length' );
+
+// SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
+
+function save_photograph_tags( $post_id ) {
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+  } else if (get_post_type($post_id) === 'photograph') {
+
+    $image = get_attached_file(get_post_thumbnail_id( $post_id ));
+    $tags = igv_read_image_keywords($image);
+
+    wp_set_object_terms( $post_id, $tags, 'post_tag' );
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'save_photograph_tags' );
 
 // METADATA FOR UPLOADS
 

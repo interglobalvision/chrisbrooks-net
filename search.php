@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-$search_types = array('post', 'project', 'page', 'attachment');
+$search_types = array('post', 'project', 'page', 'photograph');
 
 $search_term =  $_GET['s'];
 
@@ -16,8 +16,7 @@ $search_default = new WP_Query( array (
 $search_tag = new WP_Query( array (
   'fields' => 'ids',
   'post_type' => $search_types,
-  'tag' => $search_term,
-  'post_status' => array('published', 'inherit')
+  'tag' => $search_term
 ) );
 
 // If any of the video searches have posts
@@ -36,8 +35,7 @@ if( $search_default->have_posts() || $search_tag->have_posts() ) {
     'post_type' => $search_types,
     'post__in'  => $search_ids,
     'orderby'   => 'date',
-    'order'     => 'DESC',
-    'post_status' => array('published', 'inherit')
+    'order'     => 'DESC'
   ) );
 
   /*   var_dump($search); */
@@ -66,7 +64,7 @@ if( $search->have_posts() ) {
 
     <article <?php post_class('percent-col into-3'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink() ?>">
-    <?php 
+    <?php
     if( get_post_type() == 'attachment') {
       $thumb = wp_get_attachment_image_src( $post->ID, 'thumbnail' );
     ?>
