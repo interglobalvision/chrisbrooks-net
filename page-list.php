@@ -28,13 +28,13 @@ if ($posts) {
       <a href="<?php the_permalink() ?>">
 <?php
 if (!empty($meta['_igv_fig'][0])) {
-  echo '<span class="list-fig">fig.' . $meta['_igv_fig'][0] . '</span>';
+  echo '<span class="list-fig">fig.' . $meta['_igv_fig'][0] . '</span> ';
 }
 echo '<span class="font-italic">';
 the_title();
 echo '</span>';
 if (!empty($meta['_igv_year'][0])) {
-  echo ', ' . $meta['_igv_year'][0];
+  echo ', ' . $meta['_igv_year'][0] . ' ';
 }
 if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] > 1) {
   echo 'series of ' . $meta['_igv_gallery_length'][0] . ' images';
