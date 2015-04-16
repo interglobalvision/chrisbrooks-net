@@ -68,8 +68,10 @@ if( have_posts() ) {
         <span id="slick-caption" class="font-italic"></span>
          |
         <span id="slick-current-index">1</span> of <span id="slick-length"></span>
+        <span id="slide-nav">
          |
         <span id="slick-prev" class="u-pointer">Prev</span>/<span id="slick-next" class="u-pointer">Next</span>
+        </span>
       </div>
 
       <section id="single-copy" class="container">
