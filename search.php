@@ -62,7 +62,7 @@ if( $search->have_posts() ) {
 ?>
 
 
-    <article <?php post_class('percent-col into-3'); ?> id="post-<?php the_ID(); ?>">
+    <article <?php post_class('percent-col into-5'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink() ?>">
     <?php
     if( get_post_type() == 'attachment') {

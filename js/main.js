@@ -16,9 +16,7 @@ var retina = Modernizr.highresdisplay,
 
   windowHeight = $(window).innerHeight(),
 
-  captionHeight = $('#single-slider-text').outerHeight(),
-
-  slidesMargin = 70;
+  captionHeight = $('#single-slider-text').outerHeight();
 
 
 // FUNCTIONS
@@ -51,45 +49,7 @@ function lazyLoadImages(selector) {
 
 $(window).resize(function() {
   windowHeight = $(window).innerHeight();
-
-  if ($('body').hasClass('home')) {
-    slidesContainerLayoutFix();
-    resizeSlideImages();
-  }
 });
-
-function slidesContainerLayoutFix() {
-  $('#slide-container').height( windowHeight - $('#header').outerHeight() );
-}
-
-function resizeSlideImages() {
-  $('.slide-image').each(function() {
-
-    var $this = $(this);
-    var imageHeight = $this.height();
-    var offset = $this.offset();
-    var top = offset.top;
-
-    if ((imageHeight + top + slidesMargin) > windowHeight) {
-
-      if (top < 20) {
-        top = 20;
-      }
-
-      $this.css({
-        'max-height' : (windowHeight - top - slidesMargin) + 'px'
-      });
-
-    } else {
-
-      $this.css({
-        'max-height' : (windowHeight - slidesMargin) + 'px'
-      });
-
-    }
-
-  });
-}
 
 function singleLayout() {
   $('#single-slider').css({
@@ -98,35 +58,75 @@ function singleLayout() {
   });
 }
 
-if ($('body').hasClass('home')) {
-  slidesContainerLayoutFix();
-  resizeSlideImages();
-}
+// OBJECTS
 
-if ($('body').hasClass('single')) {
-  singleLayout();
-}
+  // HOME SPREADS
 
-  // RESIZE
+var Spreads = {
+  init: function() {
+    var _this = this;
+    _this.containerLayoutFix();
+    _this.resizeImages();
 
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this, args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) {
-        func.apply(context, args);
+    $('.spread-image').on('click', function() {
+      _this.nextSpread();
+    });
+
+    $(window).resize(function() {
+      _this.containerLayoutFix();
+      _this.resizeImages();
+    });
+  },
+
+  containerLayoutFix: function() {
+    $('#spread-container').height( windowHeight - $('#header').outerHeight(true) );
+  },
+
+  resizeImages: function () {
+    $('.home-spread.home-spread-active').children('.spread-image').each(function() {
+
+      var $this = $(this);
+      var imageHeight = $this.height();
+      var offset = $this.offset();
+      var top = offset.top;
+
+      if ((imageHeight + top) > windowHeight) {
+
+        if (top < 20) {
+          top = 20;
+        }
+
+        $this.css({
+          'max-height' : (windowHeight - top) + 'px'
+        });
+
+      } else {
+
+        $this.css({
+          'max-height' : (windowHeight) + 'px'
+        });
+
       }
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) {
-      func.apply(context, args);
+
+    });
+  },
+
+  nextSpread: function() {
+    var activeSpread = $('.home-spread.home-spread-active');
+    var nextSpread = activeSpread.next();
+
+    activeSpread.removeClass('home-spread-active');
+
+    if (nextSpread.length) {
+      nextSpread.addClass('home-spread-active');
+    } else {
+      $('.home-spread').first().addClass('home-spread-active');
     }
-  };
-}
+
+    this.resizeImages();
+
+  }
+};
 
   // SLICK
 
@@ -165,8 +165,14 @@ var Slick = {
       nextArrow: '#slick-next',
     });
 
+    // bind events
+
     $('.js-slick-item').on('click', function() {
       $('.js-slick-container').slick('slickNext');
+    });
+
+    $(window).on('resize', function() {
+      _this.resizeImages();
     });
   },
 
@@ -189,7 +195,8 @@ jQuery(document).ready(function () {
   'use strict';
   l('Hola Globie');
 
-// PACKERY
+  // CONDITIONAL INITS
+
   if ( $('.js-packery-container').length ) {
     $('.js-packery-container').imagesLoaded( function() {
       $('.js-packery-container').packery({
@@ -202,19 +209,16 @@ jQuery(document).ready(function () {
     });
   }
 
-// SLICK
-/*
-  var resizeFunction = debounce(function() {
-    resizeImages();
-  }, 30);
-*/
+  if ($('body').hasClass('single')) {
+    singleLayout();
+  }
+
+  if ($('body').hasClass('home')) {
+    Spreads.init();
+  }
 
   if ( $('.js-slick-item').length ) {
     Slick.init();
   }
-
-  $(window).on('resize', function() {
-    Slick.resizeImages();
-  });
 
 });
