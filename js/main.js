@@ -183,7 +183,8 @@ var Slick = {
       },
     })
     .slick({
-      initialSlide: 0,
+      fade: true,
+      speed: 500,
       prevArrow: '#slick-prev',
       nextArrow: '#slick-next',
     });
