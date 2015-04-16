@@ -151,6 +151,7 @@ var Slick = {
         var slidesLength = $('.js-slick-item').length;
         if (slidesLength === 1) {
           $('#slick-length').html(1);
+          $('#slide-nav').remove();
         } else {
           $('#slick-length').html(slidesLength);
         }
