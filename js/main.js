@@ -20,6 +20,14 @@ var retina = Modernizr.highresdisplay,
 
   slidesMargin = 70;
 
+var caption,
+  activeIndex,
+  initSlide,
+  State = History.getState(),
+  hashState = State.data.state;
+
+
+
 
 // FUNCTIONS
 
@@ -153,6 +161,10 @@ var Slick = {
         // fix images for window height
         _this.resizeImages();
 
+        // init slide
+        
+        //$('.js-slick-container').slickGoTo(initSlide);
+
         // fade in when ready
         $('#single-slider').css( 'opacity' , 1 );
         $('#single-slider-text').css( 'opacity' , 1 );
@@ -162,17 +174,33 @@ var Slick = {
         _this.replaceCaption(currentSlide);
 
         // set active index in human readable form
-        $('#slick-current-index').html(currentSlide+1);
-      }
+        activeIndex = $('[data-slick-index="'+currentSlide+'"]').attr('data-number');
+        $('#slick-current-index').html(activeIndex);
+
+        caption = $('[data-slick-index="'+currentSlide+'"]').attr('data-caption');
+
+        _this.pushSlideState(activeIndex,caption);
+      },
     })
     .slick({
+      initialSlide: 0,
       prevArrow: '#slick-prev',
       nextArrow: '#slick-next',
     });
 
+    // go to hash initial slide
+    if (hashState > 1) {
+      initSlide = $('[data-number="' + hashState + '"]').attr('data-slick-index');
+      $('.js-slick-container').slick('slickGoTo',initSlide);
+    } 
+
     $('.js-slick-item').on('click', function() {
       $('.js-slick-container').slick('slickNext');
     });
+  },
+
+  pushSlideState: function(activeIndex, caption) {
+    History.pushState({state: activeIndex}, caption, "#"+activeIndex);
   },
 
   replaceCaption: function(currentSlide) {
