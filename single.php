@@ -43,7 +43,7 @@ if( have_posts() ) {
         <div class="js-slick-container u-pointer">
           <?php
           foreach($gallery as $image) {
-            $post_id = $image[0];
+            $post_id = $image;
             $img_id = get_post_thumbnail_id( $post_id );
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
