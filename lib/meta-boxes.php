@@ -125,19 +125,19 @@ function igv_cmb_metaboxes() {
     ) );
 
 
-    // SLIDE
+    // SPREAD
 
-  $slide_meta = new_cmb2_box( array(
-      'id'            => $prefix . 'slide_metabox',
-      'title'         => __( 'Slide images', 'cmb2' ),
-      'object_types'  => array( 'slide', ), // Post type
+  $spread_meta = new_cmb2_box( array(
+      'id'            => $prefix . 'spread_metabox',
+      'title'         => __( 'Spread images', 'cmb2' ),
+      'object_types'  => array( 'spread', ), // Post type
       'context'       => 'normal',
       'priority'      => 'high',
       'show_names'    => true, // Show field names on the left
     ) );
 
-  $slide_meta_group = $slide_meta->add_field( array(
-      'id'          => $prefix . 'slide_images',
+  $spread_meta_group = $spread_meta->add_field( array(
+      'id'          => $prefix . 'spread_images',
       'type'        => 'group',
       'description' => __( 'Generates reusable form entries', 'cmb' ),
       'options'     => array(
@@ -148,35 +148,35 @@ function igv_cmb_metaboxes() {
       ),
     ) );
 
-  $slide_meta->add_group_field( $slide_meta_group, array(
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Image',
       'description' => 'DO NOT upload a file here! Choose an existing upload that you have already added to a project',
       'id'   => 'image',
       'type' => 'file',
     ) );
 
-  $slide_meta->add_group_field( $slide_meta_group, array(
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Top',
       'description' => '% value for css',
       'id'   => 'top',
       'type' => 'text',
     ) );
 
-  $slide_meta->add_group_field( $slide_meta_group, array(
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Left',
       'description' => '% value for css',
       'id'   => 'left',
       'type' => 'text',
     ) );
 
-  $slide_meta->add_group_field( $slide_meta_group, array(
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Bottom',
       'description' => '% value for css',
       'id'   => 'bottom',
       'type' => 'text',
     ) );
 
-  $slide_meta->add_group_field( $slide_meta_group, array(
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Right',
       'description' => '% value for css',
       'id'   => 'right',

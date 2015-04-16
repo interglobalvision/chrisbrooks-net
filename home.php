@@ -8,7 +8,7 @@ get_header();
   <section id="slide-container">
 <?php
 $slide = get_posts(array(
-  'post_type' => 'slide',
+  'post_type' => 'spread',
   'posts_per_page' => -1
 ));
 if ($slide) {
