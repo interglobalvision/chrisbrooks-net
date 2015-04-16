@@ -13,7 +13,7 @@ $slide = get_posts(array(
 ));
 if ($slide) {
   $post = $slide[0];
-  $slideImages = get_post_meta($post->ID, '_igv_slide_images');
+  $slideImages = get_post_meta($post->ID, '_igv_spread_images');
   foreach ($slideImages[0] as $image) {
     $imgDefault = wp_get_attachment_image_src($image['image_id'], 'slide-normal');
 ?>
