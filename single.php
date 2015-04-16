@@ -15,7 +15,7 @@ if( have_posts() ) {
 
         <nav id="single-close" class="single-nav">
           <a href="<?php echo home_url(); ?>">
-            <?php echo file_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
+            <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
           </a>
         </nav>
 <?php
@@ -25,7 +25,7 @@ if( have_posts() ) {
 ?>    
         <nav id="single-next" class="single-nav">
           <a href="<?php echo $nextLink; ?>">
-            <?php echo file_get_contents(get_bloginfo('stylesheet_directory') . '/img/next.svg'); ?>
+            <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/next.svg'); ?>
           </a>
         </nav>
 <?php 
@@ -36,12 +36,12 @@ if( have_posts() ) {
 ?>
         <nav id="single-prev" class="single-nav">
           <a href="<?php echo $prevLink; ?>">
-            <?php echo file_get_contents(get_bloginfo('stylesheet_directory') . '/img/prev.svg'); ?>
+            <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/prev.svg'); ?>
           </a>
         </nav>
 <?php } ?>
         <div class="js-slick-container u-pointer">
-          <?php 
+          <?php
           foreach($gallery as $image) {
             $post_id = $image[0];
             $img_id = get_post_thumbnail_id( $post_id );
@@ -50,7 +50,7 @@ if( have_posts() ) {
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
             $caption = get_the_title($post_id);
             echo '<div class="js-slick-item slider-item" data-caption="'.$caption.'"><div class="u-holder"><div class="u-held"><img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" /></div></div></div>';
-          } 
+          }
           ?>
         </div>
 
