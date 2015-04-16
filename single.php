@@ -47,7 +47,17 @@ if( have_posts() ) {
         </nav>
 
         <div class="js-slick-container u-pointer">
-          <?php echo do_shortcode($gallery) ?>
+          <?php 
+          foreach($gallery as $image) {
+            $post_id = $image[0];
+            $img_id = get_post_thumbnail_id( $post_id );
+            $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
+            $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
+            $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
+            $caption = get_the_title($post_id);
+            echo '<div class="js-slick-item slider-item"'.$caption.'><div class="u-holder"><div class="u-held"><img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" /></div></div></div>';
+          } 
+          ?>
         </div>
 
       </div>
