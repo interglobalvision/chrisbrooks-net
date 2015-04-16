@@ -27,6 +27,9 @@ if ($posts) {
 
       <a href="<?php the_permalink() ?>">
 <?php
+if (!empty($meta['_igv_fig'][0])) {
+  echo '<span class="list-fig">fig.' . $meta['_igv_fig'][0] . '</span>';
+}
 echo '<span class="font-italic">';
 the_title();
 echo '</span>';

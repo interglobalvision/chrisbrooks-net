@@ -133,6 +133,31 @@ function tag_archive_filter($query) {
 }
 add_action('pre_get_posts','tag_archive_filter');
 
+// SAVE FIG ON POST SAVE
+
+function set_fig_values( $post_id ) {
+
+  $meta_key = '_igv_fig';
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+  } else if (get_post_type($post_id) === 'project') {
+
+    $projects = get_posts('post_type=project&posts_per_page=-1');
+    $i = 1;
+    foreach ($projects as $post) {
+      update_post_meta($post->ID, $meta_key, $i);
+      $i++;
+    }
+
+    return;
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'set_fig_values' );
+
 // METADATA FOR UPLOADS
 
 get_template_part( 'lib/iptc' );
