@@ -18,9 +18,9 @@ var retina = Modernizr.highresdisplay,
 
   captionHeight = $('#single-slider-text').outerHeight(),
 
-  slidesMargin = 70;
+  slidesMargin = 70,
 
-var caption,
+  caption,
   activeIndex,
   initSlide,
   State = History.getState(),
@@ -152,7 +152,7 @@ var Slick = {
         if (slidesLength === 1) {
           $('#slick-length').html(1);
         } else {
-          $('#slick-length').html(slidesLength-2);
+          $('#slick-length').html(slidesLength);
         }
 
         // lazy load images for screen resolution
@@ -161,15 +161,11 @@ var Slick = {
         // fix images for window height
         _this.resizeImages();
 
-        // init slide
-        
-        //$('.js-slick-container').slickGoTo(initSlide);
-
         // fade in when ready
         $('#single-slider').css( 'opacity' , 1 );
         $('#single-slider-text').css( 'opacity' , 1 );
       },
-      afterChange: function(event, slick, currentSlide, nextSlide){
+      afterChange: function(event, slick, currentSlide){
         // set caption
         _this.replaceCaption(currentSlide);
 
@@ -179,7 +175,9 @@ var Slick = {
 
         caption = $('[data-slick-index="'+currentSlide+'"]').attr('data-caption');
 
-        _this.pushSlideState(activeIndex,caption);
+        console.log(caption+' '+activeIndex);
+        //_this.pushSlideState(activeIndex,caption);
+        history.pushState({state: activeIndex}, caption, "#"+activeIndex);
       },
     })
     .slick({
@@ -201,7 +199,8 @@ var Slick = {
   },
 
   pushSlideState: function(activeIndex, caption) {
-    History.pushState({state: activeIndex}, caption, "#"+activeIndex);
+    History.pushState({state:activeIndex}, null, "#"+activeIndex);
+    console.log('push');
   },
 
   replaceCaption: function(currentSlide) {
