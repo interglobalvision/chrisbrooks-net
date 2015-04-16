@@ -42,6 +42,7 @@ if( have_posts() ) {
 <?php } ?>
         <div class="js-slick-container u-pointer">
           <?php
+          $number = 1;
           foreach($gallery as $image) {
             $post_id = $image;
             $img_id = get_post_thumbnail_id( $post_id );
@@ -49,7 +50,12 @@ if( have_posts() ) {
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
             $caption = get_the_title($post_id);
-            echo '<div class="js-slick-item slider-item" data-caption="'.$caption.'"><div class="u-holder"><div class="u-held"><img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" /></div></div></div>';
+            $output = '<div class="js-slick-item slider-item" data-caption="' . $caption . '" data-number="' . $number . '">';
+            $output .= '<div class="u-holder"><div class="u-held">';
+            $output .= '<img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" />';
+            $output .= '</div></div></div>';
+            echo $output;
+            $number++;
           }
           ?>
         </div>
