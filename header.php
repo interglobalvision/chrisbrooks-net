@@ -14,6 +14,8 @@
   <link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon-touch.png">
   <link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/img/favicon.png">
 
+  <script src="//use.typekit.net/wdx2uwr.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
 
   <script src="<?php bloginfo('stylesheet_directory'); ?>/js/vendor/modernizr.js"></script>
   <script type="text/javascript">
