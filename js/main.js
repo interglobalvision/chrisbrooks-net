@@ -140,7 +140,12 @@ var Slick = {
         _this.replaceCaption(currentSlideIndex);
 
         // set length for n of * in captions
-        $('#slick-length').html($('.js-slick-item').length-2);
+        var slidesLength = $('.js-slick-item').length;
+        if (slidesLength === 1) {
+          $('#slick-length').html(1);
+        } else {
+          $('#slick-length').html(slidesLength-2);
+        }
 
         // lazy load images for screen resolution
         lazyLoadImages('.slider-img');
