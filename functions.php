@@ -26,6 +26,8 @@ if( function_exists( 'add_theme_support' ) ) {
 
 if( function_exists( 'add_image_size' ) ) {
   add_image_size( 'admin-thumb', 150, 150, false );
+  add_image_size( 'admin-gallery-thumb', 250, 250, false );
+
   add_image_size( 'opengraph', 1200, 630, true );
 
   add_image_size( 'gallery-basic', 800, 533, false );
@@ -48,9 +50,15 @@ get_template_part( 'lib/theme-options' );
 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
 function cmb_initialize_cmb_meta_boxes() {
   // Add CMB2 plugin
-  if( ! class_exists( 'cmb2_bootstrap_202' ) )
+  if( ! class_exists( 'cmb2_bootstrap_202' ) ) {
     require_once 'lib/CMB2/init.php';
 /*     require_once 'lib/CMB2-plugins/cmb-field-gallery/cmb-field-gallery.php'; */
+  }
+
+  // Add CMB2 Attached Posts Field plugin
+  if ( ! function_exists( 'cmb2_attached_posts_fields_render' ) ) {
+    require_once 'lib/CMB2-plugins/cmb2-attached-posts/cmb2-attached-posts-field.php';
+  }
 }
 
 // Disable that freaking admin bar
@@ -149,14 +157,35 @@ function set_fig_values( $post_id ) {
       update_post_meta($post->ID, $meta_key, $i);
       $i++;
     }
-
     return;
+
   } else {
     return;
   }
 
 }
 add_action( 'save_post', 'set_fig_values' );
+
+// SAVE GALLERY LENGTH ON POST SAVE
+
+function set_gallery_length( $post_id ) {
+
+  $meta_key = '_igv_gallery';
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+  } else if (get_post_type($post_id) === 'project') {
+
+    $gallery = get_post_meta($post_id, $meta_key);
+    update_post_meta($post_id, '_igv_gallery_length', count($gallery[0]));
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'set_gallery_length' );
 
 // METADATA FOR UPLOADS
 

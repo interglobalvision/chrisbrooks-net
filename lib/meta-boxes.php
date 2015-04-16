@@ -3,7 +3,7 @@
 /* Get post objects for select field options */
 function get_post_objects( $query_args ) {
   $args = wp_parse_args( $query_args, array(
-      'post_type' => 'post',
+      'post_type' => 'project',
     ) );
   $posts = get_posts( $args );
   $post_options = array();
@@ -34,6 +34,28 @@ function igv_cmb_metaboxes() {
   // Start with an underscore to hide fields from custom fields list
   $prefix = '_igv_';
 
+  if (isset($_GET['post'])) {
+    $post_ID = $_GET['post'];
+  } else {
+    $post_ID = null;
+  }
+
+  $parent_args = array(
+    'post_type' => 'project'
+  );
+
+  $gallery_args = array(
+    'post_type'   => 'photograph',
+    'meta_query' => array(
+      array(
+        'key' => '_igv_parent',
+        'value' => $post_ID,
+        'type' => 'NUMERIC',
+        'compare' => '='
+      )
+    )
+  );
+
   /**
    * Metaboxes declarations here
    * Reference: https://github.com/WebDevStudios/CMB2/blob/master/example-functions.php
@@ -45,21 +67,17 @@ function igv_cmb_metaboxes() {
       'object_types'  => array( 'project', ), // Post type
       'context'       => 'normal',
       'priority'      => 'high',
-      'show_names'    => false, // Show field names on the left
-      // 'cmb_styles' => false, // false to disable the CMB stylesheet
-      // 'closed'     => true, // true to keep the metabox closed by default
+      'show_names'    => true, // Show field names on the left
     ) );
 
   $gallery->add_field( array(
-      'name'    => __( 'Gallery', 'cmb2' ),
-      'desc'    => __( 'Slider gallery', 'cmb2' ),
-      'id'      => $prefix . 'gallery',
-      'type'    => 'wysiwyg',
-      'options' => array(
-        'textarea_rows' => 5,
-        'media_buttons' => true,
-        'tinymce' => true,
-        'quicktags' => false,
+    'name'    => __( 'Gallery', 'cmb2' ),
+    'desc'    => __( 'Create the gallery in the right hand column', 'cmb2' ),
+    'id'      => $prefix . 'gallery',
+    'type'    => 'custom_attached_posts',
+    'options' => array(
+        'query_args' => $gallery_args,
+        'show_thumbnails' => true
       ),
     ) );
 
@@ -78,6 +96,34 @@ function igv_cmb_metaboxes() {
       'id'      => $prefix . 'year',
       'type'    => 'text'
     ) );
+
+    // PHOTOGRAPH
+
+  $photo_meta = new_cmb2_box( array(
+      'id'            => $prefix . 'photograph_metabox',
+      'title'         => __( 'Photograph meta', 'cmb2' ),
+      'object_types'  => array( 'photograph' ),
+      'context'       => 'normal',
+      'priority'      => 'high',
+      'show_names'    => true,
+    ) );
+
+  $photo_meta->add_field( array(
+    'name' => 'Photograph details',
+    'desc' => 'Set the caption for the photograph as the title of this post. Set the image as the featured image.',
+    'type' => 'title',
+    'id'   => $prefix . 'instructions'
+  ) );
+
+  $photo_meta->add_field( array(
+      'name'    => __( 'Parent project', 'cmb2' ),
+      'desc'    => __( 'Choose the project which this photograph belongs to', 'cmb2' ),
+      'id'      => $prefix . 'parent',
+      'type'    => 'select',
+      'show_option_none' => true,
+      'options' => get_post_objects($parent_args),
+    ) );
+
 
     // SLIDE
 
@@ -102,7 +148,6 @@ function igv_cmb_metaboxes() {
       ),
     ) );
 
-  // Id's for group's fields only need to be unique for the group. Prefix is not needed.
   $slide_meta->add_group_field( $slide_meta_group, array(
       'name' => 'Image',
       'description' => 'DO NOT upload a file here! Choose an existing upload that you have already added to a project',

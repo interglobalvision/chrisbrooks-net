@@ -36,6 +36,9 @@ echo '</span>';
 if (!empty($meta['_igv_year'][0])) {
   echo ', ' . $meta['_igv_year'][0];
 }
+if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] > 1) {
+  echo 'series of ' . $meta['_igv_gallery_length'][0] . ' images';
+}
 ?></a>
 
     </article>

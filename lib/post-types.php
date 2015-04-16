@@ -59,23 +59,66 @@ function register_cpt_project() {
     register_post_type( 'project', $args );
 }
 
-add_action( 'init', 'register_cpt_slide' );
+add_action( 'init', 'register_cpt_photograph' );
 
-function register_cpt_slide() {
+function register_cpt_photograph() {
 
     $labels = array(
-        'name' => _x( 'Slides', 'slide' ),
-        'singular_name' => _x( 'Slide', 'slide' ),
-        'add_new' => _x( 'Add New', 'slide' ),
-        'add_new_item' => _x( 'Add New Slide', 'slide' ),
-        'edit_item' => _x( 'Edit Slide', 'slide' ),
-        'new_item' => _x( 'New Slide', 'slide' ),
-        'view_item' => _x( 'View Slide', 'slide' ),
-        'search_items' => _x( 'Search Slides', 'slide' ),
-        'not_found' => _x( 'No slides found', 'slide' ),
-        'not_found_in_trash' => _x( 'No slides found in Trash', 'slide' ),
-        'parent_item_colon' => _x( 'Parent Slide:', 'slide' ),
-        'menu_name' => _x( 'Slides', 'slide' ),
+        'name' => _x( 'Photographs', 'photograph' ),
+        'singular_name' => _x( 'Photograph', 'photograph' ),
+        'add_new' => _x( 'Add New', 'photograph' ),
+        'add_new_item' => _x( 'Add New Photograph', 'photograph' ),
+        'edit_item' => _x( 'Edit Photograph', 'photograph' ),
+        'new_item' => _x( 'New Photograph', 'photograph' ),
+        'view_item' => _x( 'View Photograph', 'photograph' ),
+        'search_items' => _x( 'Search Photographs', 'photograph' ),
+        'not_found' => _x( 'No photographs found', 'photograph' ),
+        'not_found_in_trash' => _x( 'No photographs found in Trash', 'photograph' ),
+        'parent_item_colon' => _x( 'Parent Photograph:', 'photograph' ),
+        'menu_name' => _x( 'Photographs', 'photograph' ),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => false,
+
+        'supports' => array( 'title', 'thumbnail' ),
+
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 5,
+
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => false,
+        'exclude_from_search' => false,
+        'has_archive' => false,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'photograph', $args );
+}
+
+add_action( 'init', 'register_cpt_spread' );
+
+function register_cpt_spread() {
+
+    $labels = array(
+        'name' => _x( 'Spreads', 'spread' ),
+        'singular_name' => _x( 'Spread', 'spread' ),
+        'add_new' => _x( 'Add New', 'spread' ),
+        'add_new_item' => _x( 'Add New Spread', 'spread' ),
+        'edit_item' => _x( 'Edit Spread', 'spread' ),
+        'new_item' => _x( 'New Spread', 'spread' ),
+        'view_item' => _x( 'View Spread', 'spread' ),
+        'search_items' => _x( 'Search Spreads', 'spread' ),
+        'not_found' => _x( 'No Spreads found', 'spread' ),
+        'not_found_in_trash' => _x( 'No Spreads found in Trash', 'spread' ),
+        'parent_item_colon' => _x( 'Parent Spread:', 'spread' ),
+        'menu_name' => _x( 'Spreads', 'spread' ),
     );
 
     $args = array(
@@ -99,5 +142,5 @@ function register_cpt_slide() {
         'capability_type' => 'post'
     );
 
-    register_post_type( 'slide', $args );
+    register_post_type( 'spread', $args );
 }
