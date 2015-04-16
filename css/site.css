@@ -848,7 +848,7 @@ ul.u-inline-list li {
   width: 10%;
 }
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: serif;
   font-size: 15px;
   line-height: 1.35em;
   letter-spacing: 0.001em;
@@ -888,6 +888,9 @@ b,
 .font-bold {
   font-weight: bold;
 }
+.font-gray {
+  color: #808080;
+}
 a,
 a:active,
 a:visited {
@@ -921,13 +924,27 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
-#tags li {
-  display: inline-block;
-  margin-left: 0.5em;
+#slide-container {
+  position: relative;
+}
+.slide-image {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+}
+#search-header {
+  margin-bottom: 80px;
 }
 #search-input {
   border-bottom: 1px dotted #0e0e0e;
   outline: none;
+}
+#tags-header {
+  margin-top: 32px;
+}
+#tags li {
+  display: inline-block;
+  margin-left: 0.5em;
 }
 .grid-hover img {
   -webkit-transition: opacity 0.3s;

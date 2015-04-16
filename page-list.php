@@ -27,7 +27,9 @@ if ($posts) {
 
       <a href="<?php the_permalink() ?>">
 <?php
+echo '<span class="font-italic">';
 the_title();
+echo '</span>';
 if (!empty($meta['_igv_year'][0])) {
   echo ', ' . $meta['_igv_year'][0];
 }

@@ -48,10 +48,10 @@
 <header id="header" class="container">
   <div class="row">
     <div class="col col6">
-      <a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+      <a href="<?php echo home_url('about/'); ?>">chris brooks</a>
     </div>
     <div class="col col6 u-align-right">
-      <ul id="menu">
+      <ul id="menu" class="font-italic">
         <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
         <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
         <li><a href="<?php echo home_url('search/'); ?>">search</a></li>
@@ -62,7 +62,7 @@
 <?php
 if (is_search() || is_tag() || is_page('Search')) {
 ?>
-<section id="search" class="container">
+<section id="search-header" class="container">
   <div class="row">
 <?php
   if (is_search()) {
@@ -70,7 +70,7 @@ if (is_search() || is_tag() || is_page('Search')) {
 ?>
     <div class="col col12 u-align-center">
       <form role="search" method="get" id="search-form" action="<?php echo home_url( '/' ); ?>">
-        <label id="search-label">Results for: </label>
+        <label id="search-label" class="font-gray">Results for: </label>
         <input type="search" id="search-input" placeholder="<?php echo $search_term; ?>" name="s" title="<?php echo esc_attr_x( 'Results for:', 'label' ) ?>" />
       </form>
     </div>
@@ -79,15 +79,15 @@ if (is_search() || is_tag() || is_page('Search')) {
 ?>
     <div class="col col12 u-align-center">
       <form role="search" method="get" id="search-form" action="<?php echo home_url( '/' ); ?>">
-        <label id="search-label">Search for: </label>
+        <label id="search-label" class="font-gray">Search for: </label>
         <input type="search" id="search-input" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
       </form>
     </div>
 <?php
   }
 ?>
-    <div class="col col12 u-align-center">
-      <ul id="tags">
+    <div id="tags-header" class="col col12 u-align-center">
+      <ul id="tags" class="font-gray">
 <?php
   $tags = get_tags();
   foreach ($tags as $tag) {

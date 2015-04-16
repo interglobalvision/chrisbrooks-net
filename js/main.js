@@ -14,9 +14,12 @@ var retina = Modernizr.highresdisplay,
 
   margin = 35,
 
-  windowHeight = $(window).outerHeight(),
+  windowHeight = $(window).innerHeight(),
 
-  captionHeight = $('#single-slider-text').outerHeight();
+  captionHeight = $('#single-slider-text').outerHeight(),
+
+  slidesMargin = 70;
+
 
 // FUNCTIONS
 
@@ -47,14 +50,57 @@ function lazyLoadImages(selector) {
   // LAYOUT
 
 $(window).resize(function() {
-  windowHeight = $(window).outerHeight();
+  windowHeight = $(window).innerHeight();
+
+  if ($('body').hasClass('home')) {
+    slidesContainerLayoutFix();
+    resizeSlideImages();
+  }
 });
+
+function slidesContainerLayoutFix() {
+  $('#slide-container').height( windowHeight - $('#header').outerHeight() );
+}
+
+function resizeSlideImages() {
+  $('.slide-image').each(function() {
+
+    var $this = $(this);
+    var imageHeight = $this.height();
+    var offset = $this.offset();
+    var top = offset.top;
+
+    if ((imageHeight + top + slidesMargin) > windowHeight) {
+
+      if (top < 20) {
+        top = 20;
+      }
+
+      $this.css({
+        'max-height' : (windowHeight - top - slidesMargin) + 'px'
+      });
+
+    } else {
+
+      $this.css({
+        'max-height' : (windowHeight - slidesMargin) + 'px'
+      });
+
+    }
+
+  });
+}
 
 function singleLayout() {
   $('#single-slider').css({
     'padding-top': margin,
     'height': (windowHeight - captionHeight)
   });
+}
+
+if ($('body').hasClass('home')) {
+  slidesContainerLayoutFix();
+  resizeSlideImages();
 }
 
 if ($('body').hasClass('single')) {
