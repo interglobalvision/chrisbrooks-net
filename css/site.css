@@ -965,6 +965,9 @@ img {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
 }
+.list-project {
+  margin-bottom: 8px;
+}
 .list-fig {
   display: inline-block;
   margin-right: 16px;

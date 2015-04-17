@@ -14,7 +14,7 @@ $args = array(
 <main id="main-content" class="container">
 
   <!-- main posts loop -->
-  <section id="posts" class="row">
+  <section id="posts" class="row js-packery-container">
 
 <?php
 $posts = get_posts($args);
@@ -23,7 +23,7 @@ if ($posts) {
     $meta = get_post_meta($post->ID);
 ?>
 
-    <article <?php post_class('col col6'); ?> id="post-<?php the_ID(); ?>">
+    <article <?php post_class('col col6 list-project js-packery-item'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink() ?>">
 <?php
 if (!empty($meta['_igv_fig'][0])) {
