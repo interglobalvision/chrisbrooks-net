@@ -848,7 +848,7 @@ ul.u-inline-list li {
   width: 10%;
 }
 body {
-  font-family: 'adobe-caslon-pro', serif;
+  font-family: "adobe-caslon-pro", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -897,13 +897,6 @@ a,
 a:active,
 a:visited {
   color: inherit;
-  -webkit-transition: opacity 0.2s;
-          transition: opacity 0.2s;
-}
-a:hover,
-a:active:hover,
-a:visited:hover {
-  opacity: 0.5;
 }
 html {
   background-color: #fdfdfd;
@@ -926,20 +919,10 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
-#spread-container {
+#slide-container {
   position: relative;
 }
-.home-spread {
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.home-spread-active {
-  display: block;
-}
-.spread-image {
+.slide-image {
   position: absolute;
   max-width: 100%;
   max-height: 100%;
@@ -981,6 +964,17 @@ img {
   opacity: 0;
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
+}
+.list-fig {
+  display: inline-block;
+  margin-right: 16px;
+  width: 40px;
+}
+.list-title {
+  display: inline-block;
+}
+.list-series-count {
+  margin-left: 56px;
 }
 .viewer {
   position: relative;
