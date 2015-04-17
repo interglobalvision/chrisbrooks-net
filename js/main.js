@@ -16,7 +16,13 @@ var retina = Modernizr.highresdisplay,
 
   windowHeight = $(window).innerHeight(),
 
-  captionHeight = $('#single-slider-text').outerHeight();
+  captionHeight = $('#single-slider-text').outerHeight(),
+
+  caption,
+  activeIndex,
+  initSlide,
+  State = History.getState(),
+  hashState = State.data.state;
 
 
 // FUNCTIONS
@@ -140,7 +146,13 @@ var Slick = {
         _this.replaceCaption(currentSlideIndex);
 
         // set length for n of * in captions
-        $('#slick-length').html($('.js-slick-item').length-2);
+        var slidesLength = $('.js-slick-item').length;
+        if (slidesLength === 1) {
+          $('#slick-length').html(1);
+          $('#slide-nav').remove();
+        } else {
+          $('#slick-length').html(slidesLength);
+        }
 
         // lazy load images for screen resolution
         lazyLoadImages('.slider-img');
@@ -152,20 +164,32 @@ var Slick = {
         $('#single-slider').css( 'opacity' , 1 );
         $('#single-slider-text').css( 'opacity' , 1 );
       },
-      afterChange: function(event, slick, currentSlide, nextSlide){
+      afterChange: function(event, slick, currentSlide){
         // set caption
         _this.replaceCaption(currentSlide);
 
         // set active index in human readable form
-        $('#slick-current-index').html(currentSlide+1);
-      }
+        activeIndex = $('[data-slick-index="'+currentSlide+'"]').attr('data-number');
+        $('#slick-current-index').html(activeIndex);
+
+        caption = $('[data-slick-index="'+currentSlide+'"]').attr('data-caption');
+
+        console.log(caption+' '+activeIndex);
+        //_this.pushSlideState(activeIndex,caption);
+        history.pushState({state: activeIndex}, caption, "#"+activeIndex);
+      },
     })
     .slick({
+      fade: true,
+      speed: 500,
       prevArrow: '#slick-prev',
       nextArrow: '#slick-next',
     });
 
-    // bind events
+    if (hashState > 1) {
+      initSlide = $('[data-number="' + hashState + '"]').attr('data-slick-index');
+      $('.js-slick-container').slick('slickGoTo',initSlide);
+    }
 
     $('.js-slick-item').on('click', function() {
       $('.js-slick-container').slick('slickNext');
@@ -174,6 +198,11 @@ var Slick = {
     $(window).on('resize', function() {
       _this.resizeImages();
     });
+  },
+
+  pushSlideState: function(activeIndex, caption) {
+    History.pushState({state:activeIndex}, null, "#"+activeIndex);
+    console.log('push');
   },
 
   replaceCaption: function(currentSlide) {
