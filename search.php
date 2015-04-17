@@ -53,7 +53,7 @@ if( $search_default->have_posts() || $search_tag->have_posts() ) {
 <main id="main-content">
 
   <!-- main posts loop -->
-  <section id="posts" class="row">
+  <section id="posts" class="row js-packery-container">
 
 <?php
 if( $search->have_posts() ) {
@@ -61,18 +61,23 @@ if( $search->have_posts() ) {
     $search->the_post();
 ?>
 
-
-    <article <?php post_class('percent-col into-5'); ?> id="post-<?php the_ID(); ?>">
-      <a href="<?php the_permalink() ?>">
-    <?php
-    if( get_post_type() == 'attachment') {
-      $thumb = wp_get_attachment_image_src( $post->ID, 'thumbnail' );
-    ?>
-        <img src="<?php echo $thumb[0];?>">
-    <?php
-    }
-    ?>
+    <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
+      <a href="<?php
+  if( get_post_type($post->ID) === 'photograph') {
+    $parent = get_post_meta($post->ID, '_igv_parent');
+    echo get_the_permalink($parent[0]);
+  } else {
+    the_permalink();
+  }
+?>">
         <?php the_post_thumbnail(); ?>
+        <div class="grid-hover-holder">
+          <div class="u-holder">
+            <div class="u-held">
+              <?php the_title(); ?>
+            </div>
+          </div>
+        </div>
       </a>
     </article>
 

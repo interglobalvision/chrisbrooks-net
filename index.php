@@ -16,7 +16,14 @@ if( have_posts() ) {
 ?>
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
-      <a href="<?php the_permalink() ?>">
+      <a href="<?php
+  if ( get_post_type($post->ID) == 'photograph') {
+    $parent = get_post_meta($post->ID, '_igv_parent');
+    echo get_the_permalink($parent[0]);
+  } else {
+    the_permalink();
+  }
+?>">
         <?php the_post_thumbnail(); ?>
         <div class="grid-hover-holder">
           <div class="u-holder">
