@@ -14,7 +14,7 @@ if( have_posts() ) {
       <div id="single-slider">
 
         <nav id="single-close" class="single-nav">
-          <a href="<?php echo home_url(); ?>">
+          <a href="<?php echo home_url('project/'); ?>">
             <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
           </a>
         </nav>
@@ -22,14 +22,14 @@ if( have_posts() ) {
   $nextPost = get_adjacent_post(null, null, false);
   if ($nextPost) {
     $nextLink = get_permalink($nextPost->ID);
-?>    
+?>
         <nav id="single-next" class="single-nav">
           <a href="<?php echo $nextLink; ?>">
             <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/next.svg'); ?>
           </a>
         </nav>
-<?php 
-  }   
+<?php
+  }
   $previousPost = get_adjacent_post();
   if ($previousPost) {
     $prevLink = get_permalink($previousPost->ID);
