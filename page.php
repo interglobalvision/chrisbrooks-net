@@ -20,8 +20,13 @@ if( have_posts() ) {
       </div>
 
       <div class="col col8">
+        <?php
+          if (!is_page('Search')) {
+        ?>
         <h4><?php the_title(); ?></h4>
-        <?php the_content(); ?>
+        <?php the_content();
+          }
+        ?>
       </div>
     </div>
   </article>
