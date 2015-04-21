@@ -25,7 +25,7 @@ if ($spreads) {
     foreach ($spreadImages[0] as $image) {
       $imgDefault = wp_get_attachment_image_src($image['image_id'], 'slide-normal');
 ?>
-      <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>" style="
+      <div class="spread-image-wrapper" style="
 <?php
       if (!empty($image['top'])) {
         echo 'top: ' . $image['top'] . '%;';
@@ -37,10 +37,12 @@ if ($spreads) {
         echo 'right: ' . $image['right'] . '%;';
       }
 ?>
-"/>
+">
+        <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>"/>
+      </div>
 <?php
     }
-?>
+?>    
     </div>
 <?php
   $i++;
