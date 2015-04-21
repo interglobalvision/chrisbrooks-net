@@ -50,7 +50,7 @@ if( have_posts() ) {
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
             $caption = get_the_title($post_id);
-            $output = '<div class="js-slick-item slider-item" data-caption="' . $caption . '" data-number="' . $number . '">';
+            $output = '<div class="js-slick-item slider-item" data-caption="' . $caption . '" data-number="' . $number . '" data-id="' . $img_id . '">';
             $output .= '<div class="u-holder"><div class="u-held">';
             $output .= '<img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" />';
             $output .= '</div></div></div>';
