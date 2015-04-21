@@ -33,9 +33,6 @@ if ($spreads) {
       if (!empty($image['left'])) {
         echo 'left: ' . $image['left'] . '%;';
       }
-      if (!empty($image['bottom'])) {
-        echo 'bottom: ' . $image['bottom'] . '%;';
-      }
       if (!empty($image['right'])) {
         echo 'right: ' . $image['right'] . '%;';
       }

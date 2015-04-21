@@ -170,13 +170,6 @@ function igv_cmb_metaboxes() {
     ) );
 
   $spread_meta->add_group_field( $spread_meta_group, array(
-      'name' => 'Bottom',
-      'description' => '% value for css',
-      'id'   => 'bottom',
-      'type' => 'text',
-    ) );
-
-  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Right',
       'description' => '% value for css',
       'id'   => 'right',
