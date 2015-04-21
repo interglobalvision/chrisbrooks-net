@@ -848,7 +848,7 @@ ul.u-inline-list li {
   width: 10%;
 }
 body {
-  font-family: "adobe-caslon-pro", serif;
+  font-family: serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -938,7 +938,6 @@ img {
 }
 .spread-image {
   position: relative;
-  max-width: 100%;
   max-height: 90%;
 }
 .spread-image-caption {
