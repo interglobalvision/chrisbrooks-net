@@ -23,7 +23,12 @@ if ($spreads) {
 <?php
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
     foreach ($spreadImages[0] as $image) {
-      $imgDefault = wp_get_attachment_image_src($image['image_id'], 'slide-normal');
+      $img_id = $image['image_id'];
+      $imgDefault = wp_get_attachment_image_src($img_id, 'slide-normal');
+      $photograph_id = get_post_field( 'post_parent', $img_id);
+      $project_id = get_post_meta($photograph_id, '_igv_parent', true );
+      $fig = get_post_meta($project_id, '_igv_fig', true );
+
 ?>
       <div class="spread-image-wrapper" style="
 <?php
@@ -43,7 +48,7 @@ if (!empty($image['scale'])) {
 } 
 ?>>
         <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>"/>
-        <span class="spread-image-caption"></span>
+        <span class="spread-image-caption">fig <?php echo $fig; ?></span>
       </div>
 <?php
     }
