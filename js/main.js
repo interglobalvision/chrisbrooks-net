@@ -104,7 +104,7 @@ var Spreads = {
       position = $this.position(),
       top = position.top,
       scale = ($this.attr('data-scale'))*0.01,
-      imageCaptionHeight = ($this.children('.spread-image-caption').outerHeight());
+      imageCaptionHeight = $this.find('.spread-image-caption').outerHeight();
 
       if ((imageWrapHeight + top) > _this.containerHeight) {
 
@@ -114,7 +114,14 @@ var Spreads = {
 
       } 
 
-      $this.children('.spread-image').css( 'max-height', ((imageWrapHeight*scale) - imageCaptionHeight) );
+      if (scale > 1) {
+        scale = 1;
+        l(scale);
+      }
+      imageWrapHeight = $this.height();
+      var imageMaxHeight = (imageWrapHeight*scale) - imageCaptionHeight;
+
+      $this.find('.spread-image').css( 'max-height', imageMaxHeight );
 
     });
   },
