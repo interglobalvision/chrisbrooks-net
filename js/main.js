@@ -70,6 +70,7 @@ function singleLayout() {
 
 var Spreads = {
   containerHeight: 0,
+  containerMargin: 0,
   init: function() {
     var _this = this;
     _this.containerLayoutFix();
@@ -87,7 +88,9 @@ var Spreads = {
 
   containerLayoutFix: function() { 
     var _this = this;
-    _this.containerHeight = windowHeight - $('#header').outerHeight(true);
+    _this.containerMargin = parseInt($('#header').css('margin-top'), 10);
+    _this.containerHeight = windowHeight - $('#header').outerHeight(true) - _this.containerMargin;
+
     $('#spread-container').height( _this.containerHeight );
   },
 
@@ -106,7 +109,6 @@ var Spreads = {
         $this.css({
           'height' : (_this.containerHeight - top) + 'px'
         });
-        console.log('imageHeight = '+ (_this.containerHeight - top) + 'px');
 
       } 
 
