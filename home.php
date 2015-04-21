@@ -37,8 +37,13 @@ if ($spreads) {
         echo 'right: ' . $image['right'] . '%;';
       }
 ?>
-">
+"<?php
+if (!empty($image['scale'])) {
+  echo ' data-scale="' . $image['scale'] . '"';
+} 
+?>>
         <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>"/>
+        <span class="spread-image-caption"></span>
       </div>
 <?php
     }

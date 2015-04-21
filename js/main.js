@@ -99,10 +99,12 @@ var Spreads = {
 
     $('.home-spread.home-spread-active').children('.spread-image-wrapper').each(function() {
 
-      var $this = $(this);
-      var imageWrapHeight = $this.height();
-      var position = $this.position();
-      var top = position.top;
+      var $this = $(this),
+      imageWrapHeight = $this.height(),
+      position = $this.position(),
+      top = position.top,
+      scale = ($this.attr('data-scale'))*0.01,
+      imageCaptionHeight = ($this.children('.spread-image-caption').outerHeight());
 
       if ((imageWrapHeight + top) > _this.containerHeight) {
 
@@ -111,6 +113,8 @@ var Spreads = {
         });
 
       } 
+
+      $this.children('.spread-image').css( 'max-height', ((imageWrapHeight*scale) - imageCaptionHeight) );
 
     });
   },
@@ -172,7 +176,6 @@ var Slick = {
 
         caption = $('[data-slick-index="'+currentSlide+'"]').attr('data-caption');
 
-        console.log(caption+' '+activeIndex);
         //_this.pushSlideState(activeIndex,caption);
         history.pushState({state: activeIndex}, caption, "#"+activeIndex);
       },
@@ -200,7 +203,6 @@ var Slick = {
 
   pushSlideState: function(activeIndex, caption) {
     History.pushState({state:activeIndex}, null, "#"+activeIndex);
-    console.log('push');
   },
 
   replaceCaption: function(currentSlide) {

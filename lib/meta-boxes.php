@@ -176,6 +176,13 @@ function igv_cmb_metaboxes() {
       'type' => 'text',
     ) );
 
+  $spread_meta->add_group_field( $spread_meta_group, array(
+      'name' => 'Scale',
+      'description' => '% value for css',
+      'id'   => 'scale',
+      'type' => 'text',
+    ) );
+
 }
 
 ?>
