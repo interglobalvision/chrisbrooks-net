@@ -13,22 +13,17 @@ get_header();
 if( have_posts() ) {
   while( have_posts() ) {
     the_post();
+    $meta = get_post_meta( $post->ID );
 ?>
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
-      <a href="<?php
-  if ( get_post_type($post->ID) == 'photograph') {
-    $parent = get_post_meta($post->ID, '_igv_parent');
-    echo get_the_permalink($parent[0]);
-  } else {
-    the_permalink();
-  }
-?>">
+      <a href="<?php the_permalink(); ?>">
         <?php the_post_thumbnail(); ?>
         <div class="grid-hover-holder">
           <div class="u-holder">
             <div class="u-held">
-              <?php the_title(); ?>
+              <span>fig. <?php echo $meta['_igv_fig'][0]; ?></span>
+              <h2><?php the_title(); ?></h2>
             </div>
           </div>
         </div>
