@@ -30,6 +30,10 @@ var retina = Modernizr.highresdisplay,
 
 // FUNCTIONS
 
+$(window).on('resize', function() {
+  windowHeight = $(window).height();
+});
+
   // LAZY IMAGES
 
 function lazyLoadImages(selector) {
@@ -54,14 +58,6 @@ function lazyLoadImages(selector) {
   });
 }
 
-  // LAYOUT
-
-$(window).resize(function() {
-  windowHeight = $(window).height();
-  if ($('#single-slider').length) {
-    $('#single-slider').css( 'height', windowHeight );
-  }
-});
 
 // OBJECTS
 
@@ -186,9 +182,6 @@ var Slick = {
       },
       afterChange: function(event, slick, currentSlide){
         $current = $('[data-slick-index="'+currentSlide+'"]');
-
-        // set active index in human readable form
-        activeIndex = $current.attr('data-number');
         caption = $current.attr('data-caption');
         activeId = $current.attr('data-id');
         history.pushState({state: activeId}, caption, "#"+activeId);
@@ -210,12 +203,14 @@ var Slick = {
       $('.js-slick-container').slick('slickNext');
     });
 
-    $(window).on('resize', function() {
-      _this.resizeImages();
-    });
+    $(window).resize( $.debounce( 250, function() {
+        _this.resizeImages();
+      })
+    );
   },
 
   resizeImages: function() {
+    $('#single-slider').css( 'height', windowHeight );
     $('.js-slick-item img').css({ 
       'max-height' : ( windowHeight - captionHeight - margin ),
       'margin-top' : margin
