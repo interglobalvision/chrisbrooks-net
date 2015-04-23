@@ -14,12 +14,15 @@ var retina = Modernizr.highresdisplay,
 
   margin = 35,
 
-  windowHeight = $(window).innerHeight(),
+  windowHeight = $(window).height(),
 
   captionHeight = $('#single-slider-text').outerHeight(),
 
+  $current,
+
   caption,
   activeIndex,
+  activeId,
   initSlide,
   State = History.getState(),
   hashState = State.hash.slice(-1);
@@ -54,15 +57,11 @@ function lazyLoadImages(selector) {
   // LAYOUT
 
 $(window).resize(function() {
-  windowHeight = $(window).innerHeight();
+  windowHeight = $(window).height();
+  if ($('#single-slider').length) {
+    $('#single-slider').css( 'height', windowHeight );
+  }
 });
-
-function singleLayout() {
-  $('#single-slider').css({
-    'padding-top': margin,
-    'height': (windowHeight - captionHeight)
-  });
-}
 
 // OBJECTS
 
@@ -108,8 +107,6 @@ var Spreads = {
       top = position.top,
       scale = ($this.attr('data-scale')*0.01),
       imageCaptionHeight = $this.find('.spread-image-caption').outerHeight();
-
-      console.log($this.attr('data-scale'));
 
       if ((imageWrapHeight + top) > _this.containerHeight) {
 
@@ -164,16 +161,18 @@ var Slick = {
     $('.js-slick-container').on({
       init: function(event, slick){
         var currentSlideIndex = $('.slick-active').attr('data-slick-index');
-        // set caption
-        _this.replaceCaption(currentSlideIndex);
+        // set captions
+        $('.js-slick-item').each(function() {
+          caption = $(this).attr('data-caption');
+          number = $(this).attr('data-number');
+          $(this).find('.slick-caption').html(caption);
+          $(this).find('.slick-current-index').html(number);
+        });
 
         // set length for n of * in captions
         var slidesLength = $('.js-slick-item').length;
         if (slidesLength === 1) {
-          $('#slick-length').html(1);
-          $('#slide-nav').remove();
-        } else {
-          $('#slick-length').html(slidesLength);
+          $('.slide-nav').remove();
         }
 
         // lazy load images for screen resolution
@@ -184,27 +183,22 @@ var Slick = {
 
         // fade in when ready
         $('#single-slider').css( 'opacity' , 1 );
-        $('#single-slider-text').css( 'opacity' , 1 );
       },
       afterChange: function(event, slick, currentSlide){
-        // set caption
-        _this.replaceCaption(currentSlide);
+        $current = $('[data-slick-index="'+currentSlide+'"]');
 
         // set active index in human readable form
-        activeIndex = $('[data-slick-index="'+currentSlide+'"]').attr('data-number');
-        $('#slick-current-index').html(activeIndex);
-
-        caption = $('[data-slick-index="'+currentSlide+'"]').attr('data-caption');
-
-        var activeId = $('[data-number="' + activeIndex + '"]').attr('data-id');
+        activeIndex = $current.attr('data-number');
+        caption = $current.attr('data-caption');
+        activeId = $current.attr('data-id');
         history.pushState({state: activeId}, caption, "#"+activeId);
       },
     })
     .slick({
       fade: true,
       speed: 500,
-      prevArrow: '#slick-prev',
-      nextArrow: '#slick-next',
+      prevArrow: '.slick-prev',
+      nextArrow: '.slick-next',
     });
 
     if (hashState > 1) {
@@ -221,17 +215,11 @@ var Slick = {
     });
   },
 
-  replaceCaption: function(currentSlide) {
-    var caption = $('[data-slick-index="' + currentSlide + '"]').data('caption');
-    if (! caption || caption === undefined || caption === null) {
-      $('#slick-caption').html(' ');
-    } else {
-      $('#slick-caption').html(caption);
-    }
-  },
-
   resizeImages: function() {
-    $('.js-slick-item img').css( 'max-height' , ( windowHeight - captionHeight - margin ) );
+    $('.js-slick-item img').css({ 
+      'max-height' : ( windowHeight - captionHeight - margin ),
+      'margin-top' : margin
+    });
   }
 };
 
@@ -254,8 +242,8 @@ jQuery(document).ready(function () {
     });
   }
 
-  if ($('body').hasClass('single')) {
-    singleLayout();
+  if ($('#single-slider').length) {
+    $('#single-slider').css( 'height', windowHeight );
   }
 
   if ($('body').hasClass('home')) {
