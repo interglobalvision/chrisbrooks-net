@@ -6,7 +6,8 @@ get_header();
 if( have_posts() ) {
   while( have_posts() ) {
     the_post();
-    $gallery = get_post_meta( $post->ID, '_igv_gallery', true );
+    $images = get_post_meta( $post->ID, '_igv_gallery', true );
+    $length = get_post_meta( $post->ID, '_igv_gallery_length', true );
 ?>
 
     <article <?php post_class('viewer'); ?> id="post-<?php the_ID(); ?>">
@@ -40,38 +41,36 @@ if( have_posts() ) {
           </a>
         </nav>
 <?php } ?>
-        <div class="js-slick-container u-pointer">
+        <div class="js-slick-container<?php if ($length != 1) {echo ' u-pointer';} ?>">
           <?php
           $number = 1;
-          foreach($gallery as $image) {
+          foreach($images as $image) {
             $post_id = $image;
             $img_id = get_post_thumbnail_id( $post_id );
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
             $caption = get_the_title($post_id);
-            $output = '<div class="js-slick-item slider-item" data-caption="' . $caption . '" data-number="' . $number . '" data-id="' . $img_id . '">';
-            $output .= '<div class="u-holder"><div class="u-held">';
-            $output .= '<img class="slider-img" data-basic="'.$img[0].'" data-large="'.$imgLarge[0].'" data-largest="'.$imgLargest[0].'" />';
-            $output .= '</div></div></div>';
-            echo $output;
-            $number++;
-          }
-          ?>
-        </div>
+?>
+            <div class="js-slick-item slider-item" 
+            data-caption="<?php echo $caption; ?>" 
+            data-number="<?php echo $number; ?>" 
+            data-id="<?php echo $img_id; ?>">
+              <div class="u-holder">
+                <div class="u-held">
+                  <img class="slider-img" 
+                  data-basic="<?php echo $img[0]; ?>" 
+                  data-large="<?php echo $imgLarge[0]; ?>" 
+                  data-largest="<?php echo $imgLargest[0]; ?>" />
+                  <div id="single-slider-text">
+                    <span><?php the_title(); ?> | <?php echo $caption; ?> | <?php echo $number; ?> of <?php echo $length[0]; ?> | </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end js-slick-item -->
+<?php $number++; } ?>
+        </div><!-- end js-slick-container -->
 
-      </div>
-
-      <div id="single-slider-text">
-        <?php the_title(); ?>
-         |
-        <span id="slick-caption" class="font-italic"></span>
-         |
-        <span id="slick-current-index">1</span> of <span id="slick-length"></span>
-        <span id="slide-nav">
-         |
-        <span id="slick-prev" class="u-pointer">Prev</span>/<span id="slick-next" class="u-pointer">Next</span>
-        </span>
       </div>
 
       <section id="single-copy" class="container">
