@@ -80,10 +80,11 @@ var Spreads = {
       _this.nextSpread();
     });
 
-    $(window).resize(function() {
-      _this.containerLayoutFix();
-      _this.resizeImages();
-    });
+    $(window).resize( $.debounce( 250, function() {
+        _this.containerLayoutFix();
+        _this.resizeImages();
+      })
+    );
   },
 
   containerLayoutFix: function() { 
@@ -99,12 +100,16 @@ var Spreads = {
 
     $('.home-spread.home-spread-active').children('.spread-image-wrapper').each(function() {
 
+      $(this).css('height','');
+
       var $this = $(this),
       imageWrapHeight = $this.height(),
       position = $this.position(),
       top = position.top,
-      scale = ($this.attr('data-scale'))*0.01,
+      scale = ($this.attr('data-scale')*0.01),
       imageCaptionHeight = $this.find('.spread-image-caption').outerHeight();
+
+      console.log($this.attr('data-scale'));
 
       if ((imageWrapHeight + top) > _this.containerHeight) {
 
@@ -123,6 +128,10 @@ var Spreads = {
         var imageMaxHeight = (imageWrapHeight*scale) - imageCaptionHeight;
       } else {
         var imageMaxHeight = imageWrapHeight - imageCaptionHeight;
+      }
+
+      if (imageMaxHeight < 60) {
+        imageMaxHeight = 60;
       }
 
       $this.find('img.spread-image').css( 'max-height', imageMaxHeight );
