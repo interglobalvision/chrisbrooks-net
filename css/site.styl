@@ -53,7 +53,7 @@ $basic-animation-speed = 0.3s
 // TYPOGRAPHY
 
 body
-  font-family: /*"adobe-caslon-pro",*/serif
+  font-family: 'adobe-caslon-pro', serif
   font-style: normal
   font-weight: 400
   font-size: $font-size-basic
@@ -125,17 +125,17 @@ img
 
 #spread-container
   position: relative
-  
+
 .home-spread
   position: absolute
   width: 100%
   height: 100%
   background-color: $color-white-soft
   display: none
-  
+
 .home-spread-active
   display: block
-  
+
 .spread-image-wrapper
   position: absolute
   height: 80%
@@ -143,8 +143,8 @@ img
 .spread-image
   position: relative
   max-height: 90%
-  
-.spread-image-caption 
+
+.spread-image-caption
   display: block
   padding-top: 0.5em
 
@@ -244,7 +244,7 @@ img
 
 .js-slick-container, .slick-list, .slick-track
   height: 100%
-  
+
 .slick-slide
   background: $color-white-soft
 
@@ -331,13 +331,13 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
-      
+
   .spread-image-wrapper
-    max-width: 40% 
-    
+    max-width: 40%
+
   #single-close
     top: 0
-    
+
 @media screen and (max-width: 348px)
 
   $col = 16px
