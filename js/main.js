@@ -182,7 +182,7 @@ var Slick = {
     });
 
     if (hashState > 1) {
-      initSlide = $('[data-position="' + hashState + '"]').attr('data-slick-index');
+      initSlide = $('[data-index="' + hashState + '"]').attr('data-slick-index');
       $('.js-slick-container').slick('slickGoTo',initSlide);
     }
 

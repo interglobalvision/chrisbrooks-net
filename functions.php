@@ -229,7 +229,7 @@ add_action( 'save_post', 'set_project_featured_image' );
 
 // SAVE PHOTOGRAPH POSITION IN  GALLERY ON POST SAVE
 
-function set_gallery_position( $post_id ) {
+function set_gallery_index( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
@@ -241,7 +241,7 @@ function set_gallery_position( $post_id ) {
       $gallery = explode(',', $_POST[$meta_key]);
       $pos = 1;
       foreach ($gallery as $photo) {
-        update_post_meta($photo, '_igv_gallery_position', $pos);
+        update_post_meta($photo, '_igv_gallery_index', $pos);
         $pos++;
       }
     }
@@ -252,7 +252,7 @@ function set_gallery_position( $post_id ) {
   }
 
 }
-add_action( 'save_post', 'set_gallery_position' );
+add_action( 'save_post', 'set_gallery_index' );
 
 // SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
 
