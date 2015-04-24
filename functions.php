@@ -189,8 +189,10 @@ function set_gallery_length( $post_id ) {
 		return;
   } else if (get_post_type($post_id) === 'project') {
 
-    $gallery = get_post_meta($post_id, $meta_key);
-    update_post_meta($post_id, '_igv_gallery_length', count($gallery[0]));
+    if (isset($_POST[$meta_key])) {
+      $gallery = explode(',', $_POST[$meta_key]);
+      update_post_meta($post_id, '_igv_gallery_length', count($gallery));
+    }
     return;
 
   } else {
@@ -199,6 +201,31 @@ function set_gallery_length( $post_id ) {
 
 }
 add_action( 'save_post', 'set_gallery_length' );
+
+// SAVE FEATURED IMAGE FROM GALLERY ON POST SAVE
+
+function set_project_featured_image( $post_id ) {
+
+  $meta_key = '_igv_gallery';
+
+  if ( wp_is_post_revision( $post_id ) ) {
+    return;
+  } else if (get_post_type($post_id) === 'project') {
+
+    if (isset($_POST[$meta_key])) {
+      $gallery = explode(',', $_POST[$meta_key]);
+      $photo_id = $gallery[0];
+      $thumb_id = get_post_thumbnail_id( $photo_id );
+      set_post_thumbnail( $post_id, $thumb_id );
+    }
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'set_project_featured_image' );
 
 // SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
 
@@ -228,12 +255,7 @@ function save_photograph_title( $post_id ) {
   if ( wp_is_post_revision( $post_id ) ) {
     return;
   } else if (get_post_type($post_id) === 'photograph') {
-/*
-    $image = get_attached_file(get_post_thumbnail_id( $post_id ));
-    if (igv_read_image_title($image)) {
-      $title = igv_read_image_title($image);
-    } else {
-*/
+
     $attachment_id = get_post_thumbnail_id( $post_id );
     $attachment = get_post( $attachment_id );
     if ($attachment) {
@@ -241,7 +263,7 @@ function save_photograph_title( $post_id ) {
       global $wpdb;
       $wpdb->update( $wpdb->posts, array( 'post_title' =>  $title, 'post_name' => $title ), array( 'ID' => $post_id ) );
     }
-    
+
     return;
 
   } else {
