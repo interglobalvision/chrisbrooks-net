@@ -157,13 +157,6 @@ var Slick = {
     $('.js-slick-container').on({
       init: function(event, slick){
         var currentSlideIndex = $('.slick-active').attr('data-slick-index');
-        // set captions
-        $('.js-slick-item').each(function() {
-          caption = $(this).attr('data-caption');
-          number = $(this).attr('data-number');
-          $(this).find('.slick-caption').html(caption);
-          $(this).find('.slick-current-index').html(number);
-        });
 
         // set length for n of * in captions
         var slidesLength = $('.js-slick-item').length;
@@ -180,12 +173,6 @@ var Slick = {
         // fade in when ready
         $('#single-slider').css( 'opacity' , 1 );
       },
-      afterChange: function(event, slick, currentSlide){
-        $current = $('[data-slick-index="'+currentSlide+'"]');
-        caption = $current.attr('data-caption');
-        activeId = $current.attr('data-id');
-        history.pushState({state: activeId}, caption, "#"+activeId);
-      },
     })
     .slick({
       fade: true,
@@ -195,7 +182,7 @@ var Slick = {
     });
 
     if (hashState > 1) {
-      initSlide = $('[data-id="' + hashState + '"]').attr('data-slick-index');
+      initSlide = $('[data-position="' + hashState + '"]').attr('data-slick-index');
       $('.js-slick-container').slick('slickGoTo',initSlide);
     }
 
