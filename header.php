@@ -50,12 +50,13 @@
 <header id="header" class="container">
   <div class="row">
     <div class="col col6">
-      <a href="<?php echo home_url('about/'); ?>">chris brooks</a>
+      <a href="<?php echo home_url(); ?>">chris brooks</a>
     </div>
     <div class="col col6 u-align-right">
       <ul id="menu" class="font-italic">
         <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
         <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
+        <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
         <li><a href="<?php echo home_url('search/'); ?>">search</a></li>
       </ul>
     </div>
