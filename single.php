@@ -43,9 +43,9 @@ if( have_posts() ) {
 <?php } ?>
         <div class="js-slick-container<?php if ($length != 1) {echo ' u-pointer';} ?>">
           <?php
-          $number = 1;
           foreach($images as $image) {
             $post_id = $image;
+            $position = get_post_meta( $post_id, '_igv_gallery_position', true);
             $img_id = get_post_thumbnail_id( $post_id );
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
@@ -53,9 +53,7 @@ if( have_posts() ) {
             $caption = get_the_title($post_id);
 ?>
             <div class="js-slick-item slider-item" 
-            data-caption="<?php echo $caption; ?>" 
-            data-number="<?php echo $number; ?>" 
-            data-id="<?php echo $img_id; ?>">
+            data-position="<?php echo $position; ?>">
               <div class="u-holder">
                 <div class="u-held">
                   <img class="slider-img" 
@@ -63,12 +61,12 @@ if( have_posts() ) {
                   data-large="<?php echo $imgLarge[0]; ?>" 
                   data-largest="<?php echo $imgLargest[0]; ?>" />
                   <div id="single-slider-text">
-                    <span><?php the_title(); ?> | <?php echo $caption; ?> | <?php echo $number; ?> of <?php echo $length[0]; ?> | </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
+                    <span><?php the_title(); ?> | <?php echo $caption; ?> | <?php echo $position; ?> of <?php echo $length[0]; ?> | </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
                   </div>
                 </div>
               </div>
             </div><!-- end js-slick-item -->
-<?php $number++; } ?>
+<?php } ?>
         </div><!-- end js-slick-container -->
 
       </div>
