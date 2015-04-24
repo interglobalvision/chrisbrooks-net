@@ -16,13 +16,14 @@ var retina = Modernizr.highresdisplay,
   largeImageThreshold = 800,
   largestImageThreshold = 1400,
 
+  noSpreadLayoutThreshold = 600,
+
   margin = 35,
 
   windowHeight = $(window).height(),
+  windowWidth = $(window).width(),
 
   captionHeight = $('#single-slider-text').outerHeight(),
-
-  $current,
 
   caption,
   activeIndex,
@@ -36,6 +37,7 @@ var retina = Modernizr.highresdisplay,
 
 $(window).on('resize', function() {
   windowHeight = $(window).height();
+  windowWidth = $(window).width();
 });
 
   // LAZY IMAGES
@@ -97,6 +99,10 @@ var Spreads = {
 
   resizeImages: function () {
     var _this = this;
+
+    if (noSpreadLayoutThreshold > windowWidth) {
+      return false;
+    }
 
     $('.home-spread.home-spread-active').children('.spread-image-wrapper').each(function() {
 
