@@ -221,6 +221,36 @@ function save_photograph_tags( $post_id ) {
 }
 add_action( 'save_post', 'save_photograph_tags' );
 
+// SAVE TITLE FOR PHOTOGRAPHS ON POST SAVE
+
+function save_photograph_title( $post_id ) {
+
+  if ( wp_is_post_revision( $post_id ) ) {
+    return;
+  } else if (get_post_type($post_id) === 'photograph') {
+/*
+    $image = get_attached_file(get_post_thumbnail_id( $post_id ));
+    if (igv_read_image_title($image)) {
+      $title = igv_read_image_title($image);
+    } else {
+*/
+    $attachment_id = get_post_thumbnail_id( $post_id );
+    $attachment = get_post( $attachment_id );
+    if ($attachment) {
+      $title = $attachment->post_title;
+      global $wpdb;
+      $wpdb->update( $wpdb->posts, array( 'post_title' =>  $title, 'post_name' => $title ), array( 'ID' => $post_id ) );
+    }
+    
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'save_photograph_title' );
+
 // METADATA FOR UPLOADS
 
 get_template_part( 'lib/iptc' );
