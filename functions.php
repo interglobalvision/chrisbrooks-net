@@ -227,6 +227,33 @@ function set_project_featured_image( $post_id ) {
 }
 add_action( 'save_post', 'set_project_featured_image' );
 
+// SAVE PHOTOGRAPH POSITION IN  GALLERY ON POST SAVE
+
+function set_gallery_position( $post_id ) {
+
+  $meta_key = '_igv_gallery';
+
+  if ( wp_is_post_revision( $post_id ) ) {
+    return;
+  } else if (get_post_type($post_id) === 'project') {
+
+    if (isset($_POST[$meta_key])) {
+      $gallery = explode(',', $_POST[$meta_key]);
+      $pos = 1;
+      foreach ($gallery as $photo) {
+        update_post_meta($photo, '_igv_gallery_position', $pos);
+        $pos++;
+      }
+    }
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'set_gallery_position' );
+
 // SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
 
 function save_photograph_tags( $post_id ) {
