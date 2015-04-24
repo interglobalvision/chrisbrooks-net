@@ -27,6 +27,7 @@ if ($spreads) {
       $imgDefault = wp_get_attachment_image_src($img_id, 'slide-normal');
       $photograph_id = get_post_field( 'post_parent', $img_id);
       $project_id = get_post_meta($photograph_id, '_igv_parent', true );
+      $position = get_post_meta($photograph_id, '_igv_gallery_position', true );
       $project_url = get_permalink( $project_id );
       $fig = get_post_meta($project_id, '_igv_fig', true );
 
@@ -49,7 +50,7 @@ if (!empty($image['scale'])) {
 } 
 ?>>
         <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>"/>
-        <span class="spread-image-caption"><a href="<?php echo $project_url . '#' . $img_id; ?>">fig. <?php echo $fig; ?></a>&emsp;<a href="#">&bull;</a></span>
+        <span class="spread-image-caption"><a href="<?php echo $project_url . '#' . $position; ?>">fig. <?php echo $fig; ?></a>&emsp;<a href="#">&bull;</a></span>
       </div>
 <?php
     }
