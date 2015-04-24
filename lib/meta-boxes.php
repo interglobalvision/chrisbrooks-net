@@ -177,11 +177,20 @@ function igv_cmb_metaboxes() {
     ) );
 
   $spread_meta->add_group_field( $spread_meta_group, array(
+      'name' => 'Max-width',
+      'description' => '% value for css',
+      'id'   => 'maxwidth',
+      'type' => 'text',
+    ) );
+
+/*
+  $spread_meta->add_group_field( $spread_meta_group, array(
       'name' => 'Scale',
       'description' => '% value for css',
       'id'   => 'scale',
       'type' => 'text',
     ) );
+*/
 
 }
 

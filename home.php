@@ -12,14 +12,9 @@ $spreads = get_posts(array(
   'posts_per_page' => -1
 ));
 if ($spreads) {
-  $i = 0;
   foreach ($spreads as $post) {
 ?>
-    <div class="home-spread<?php
-    if ($i === 0) {
-      echo ' home-spread-active';
-    }
-?>">
+    <div class="home-spread">
 <?php
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
     foreach ($spreadImages[0] as $image) {
@@ -43,21 +38,20 @@ if ($spreads) {
       if (!empty($image['right'])) {
         echo 'right: ' . $image['right'] . '%;';
       }
+      if (!empty($image['maxwidth'])) {
+        echo 'max-width: ' . $image['maxwidth'] . '%;';
+      }
+
 ?>
-"<?php
-if (!empty($image['scale'])) {
-  echo ' data-scale="' . $image['scale'] . '"';
-} 
-?>>
+">
         <img class="spread-image u-pointer" src="<?php echo $imgDefault[0]; ?>"/>
         <span class="spread-image-caption"><a href="<?php echo $project_url . '#' . $position; ?>">fig. <?php echo $fig; ?></a>&emsp;<a href="#">&bull;</a></span>
       </div>
 <?php
     }
-?>    
+?>
     </div>
 <?php
-  $i++;
   }
 }
 ?>

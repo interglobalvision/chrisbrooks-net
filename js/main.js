@@ -6,6 +6,10 @@ function l(data) {
   console.log(data);
 }
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 // VARS
 
 var retina = Modernizr.highresdisplay,
@@ -68,6 +72,7 @@ var Spreads = {
   containerMargin: 0,
   init: function() {
     var _this = this;
+    _this.firstSpread();
     _this.containerLayoutFix();
     _this.resizeImages();
 
@@ -82,7 +87,7 @@ var Spreads = {
     );
   },
 
-  containerLayoutFix: function() { 
+  containerLayoutFix: function() {
     var _this = this;
     _this.containerMargin = parseInt($('#header').css('margin-top'), 10);
     _this.containerHeight = windowHeight - $('#header').outerHeight(true) - _this.containerMargin;
@@ -110,7 +115,7 @@ var Spreads = {
           'height' : (_this.containerHeight - top) + 'px'
         });
 
-      } 
+      }
 
       imageWrapHeight = $this.height();
 
@@ -130,6 +135,15 @@ var Spreads = {
       $this.find('img.spread-image').css( 'max-height', imageMaxHeight );
 
     });
+  },
+
+  firstSpread: function() {
+
+    var length = $('.home-spread').length;
+    var random = getRandomInt(0, length);
+
+    $('.home-spread').eq(random).addClass('home-spread-active');
+
   },
 
   nextSpread: function() {
@@ -198,7 +212,7 @@ var Slick = {
 
   resizeImages: function() {
     $('#single-slider').css( 'height', windowHeight );
-    $('.js-slick-item img').css({ 
+    $('.js-slick-item img').css({
       'max-height' : ( windowHeight - captionHeight - margin ),
       'margin-top' : margin
     });
