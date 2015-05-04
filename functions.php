@@ -192,10 +192,8 @@ function add_photos_empty_gallery( $post_id ) {
         foreach ($photos as $photo) {
           array_push($photos_array, $photo->ID);
         }
-        wp_reset_postdata();
         update_post_meta($post_id, $gallery_key, $photos_array);
       }
-
     }
     return;
 
