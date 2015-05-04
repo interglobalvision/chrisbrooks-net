@@ -8,6 +8,7 @@ if( have_posts() ) {
     the_post();
     $images = get_post_meta( $post->ID, '_igv_gallery', true );
     $length = get_post_meta( $post->ID, '_igv_gallery_length', true );
+    $fig = get_post_meta( $post->ID, '_igv_fig', true );
 ?>
 
     <article <?php post_class('viewer'); ?> id="post-<?php the_ID(); ?>">
@@ -61,7 +62,7 @@ if( have_posts() ) {
                   data-large="<?php echo $imgLarge[0]; ?>" 
                   data-largest="<?php echo $imgLargest[0]; ?>" />
                   <div id="single-slider-text">
-                    <span><?php the_title(); ?> | <?php echo $caption; ?> | <?php echo $index; ?> of <?php echo $length[0]; ?> | </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
+                    <span>fig.<?php echo $fig; ?> <?php the_title(); ?> | <em><?php echo $caption; ?></em> | <?php echo $index; ?> of <?php echo $length[0]; ?> | </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
                   </div>
                 </div>
               </div>
