@@ -175,6 +175,37 @@ function tag_archive_filter($query) {
 }
 add_action('pre_get_posts','tag_archive_filter');
 
+// ADD PHOTOGRAPHS TO EMPTY GALLERY ON PROJECT SAVE
+
+function add_photos_empty_gallery( $post_id ) {
+
+  $gallery_key = '_igv_gallery';
+  $parent_key = '_igv_parent';
+
+  if ( wp_is_post_revision( $post_id ) ) {
+    return;
+  } else if (get_post_type($post_id) === 'project') {
+    if (empty($_POST[$gallery_key])) {
+      $photos = get_posts('post_type=photograph&posts_per_page=-1&meta_key=' . $parent_key . '&meta_value=' . $post_id);
+      if ($photos) {
+        $photos_array = array();
+        foreach ($photos as $photo) {
+          array_push($photos_array, $photo->ID);
+        }
+        wp_reset_postdata();
+        update_post_meta($post_id, $gallery_key, $photos_array);
+      }
+
+    }
+    return;
+
+  } else {
+    return;
+  }
+
+}
+add_action( 'save_post', 'add_photos_empty_gallery' );
+
 // SAVE FIG ON POST SAVE
 
 function set_fig_values( $post_id ) {
@@ -320,6 +351,7 @@ function save_photograph_title( $post_id ) {
 
 }
 add_action( 'save_post', 'save_photograph_title' );
+
 
 // METADATA FOR UPLOADS
 
