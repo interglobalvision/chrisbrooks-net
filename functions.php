@@ -87,6 +87,27 @@ function new_display_post_thumbnail_column($col, $id){
   }
 }
 
+// Show fig number in admin lists
+add_filter('manage_project_posts_columns', 'new_add_post_fig_column');
+function new_add_post_fig_column($cols){
+  $cols['new_post_fig'] = __('Fig');
+  return $cols;
+}
+add_action('manage_project_posts_custom_column', 'new_display_post_fig_column', 6, 3);
+function new_display_post_fig_column($col, $id){
+  switch($col){
+    case 'new_post_fig':
+    global $post;
+    $admin_fig = get_post_meta($post->ID, '_igv_fig', true );
+    if( !(empty($admin_fig)) ) {
+      echo $admin_fig;
+      }
+    else
+    echo 'Not supported in theme';
+    break;
+  }
+}
+
 // remove automatic <a> links from images in blog
 function wpb_imagelink_setup() {
 	$image_set = get_option( 'image_default_link_type' );
@@ -164,7 +185,7 @@ function set_fig_values( $post_id ) {
 		return;
   } else if (get_post_type($post_id) === 'project') {
 
-    $projects = get_posts('post_type=project&posts_per_page=-1');
+    $projects = get_posts('post_type=project&posts_per_page=-1&order=ASC');
     $i = 1;
     foreach ($projects as $post) {
       update_post_meta($post->ID, $meta_key, $i);
