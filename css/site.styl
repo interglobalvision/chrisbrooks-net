@@ -96,6 +96,9 @@ a, a:active, a:visited
 
 // BASIC
 
+html, body
+  height: 100%
+
 html
   background-color: $color-white-soft
   color: $color-black-soft
@@ -112,14 +115,7 @@ img
 // HEADER
 
 #header
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  margin-top: $margin-basic
-  z-index: 1
-
-#header-container
+  padding-top: $margin-basic
   margin-bottom: $margin-basic
 
 #menu
@@ -131,23 +127,13 @@ img
 // HOME
 
 #spread-container
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  
-.spread-wrapper 
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
-  display: none
+  position: relative
 
 .home-spread
   position: absolute
   width: 100%
   height: 100%
+  display: none
 
 .home-spread-active
   display: block
