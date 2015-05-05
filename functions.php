@@ -74,8 +74,10 @@ function new_add_post_thumbnail_column($cols){
   $cols['new_post_thumb'] = __('Thumbnail');
   return $cols;
 }
+
 add_action('manage_posts_custom_column', 'new_display_post_thumbnail_column', 5, 2);
 function new_display_post_thumbnail_column($col, $id){
+  // >> This could be an if
   switch($col){
     case 'new_post_thumb':
     if( function_exists('the_post_thumbnail') ) {
@@ -93,6 +95,7 @@ function new_add_post_fig_column($cols){
   $cols['new_post_fig'] = __('Fig');
   return $cols;
 }
+
 add_action('manage_project_posts_custom_column', 'new_display_post_fig_column', 6, 3);
 function new_display_post_fig_column($col, $id){
   switch($col){
@@ -167,6 +170,7 @@ function pr($data){
 // PRE GET POSTS
 
 function tag_archive_filter($query) {
+  // >> Any reason why this is split is two different ifs?
   if ( !is_admin() && $query->is_main_query() ) {
     if ($query->is_tag) {
       $query->set('post_type', array( 'post', 'project', 'photograph' ));
@@ -203,11 +207,13 @@ function set_fig_values( $post_id ) {
 
   $meta_key = '_igv_fig';
 
+  // >> if hell, could be simplier
 	if ( wp_is_post_revision( $post_id ) ) {
 		return;
   } else if (get_post_type($post_id) === 'project') {
 
     $projects = get_posts('post_type=project&posts_per_page=-1&order=ASC');
+    // >> use for instead of foreach
     $i = 1;
     foreach ($projects as $post) {
       update_post_meta($post->ID, $meta_key, $i);
@@ -228,6 +234,7 @@ function set_gallery_length( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
+  // if hell
 	if ( wp_is_post_revision( $post_id ) ) {
 		return;
   } else if (get_post_type($post_id) === 'project') {
@@ -270,6 +277,7 @@ function set_gallery_index( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
+  // if hell
   if ( wp_is_post_revision( $post_id ) ) {
     return;
   } else if (get_post_type($post_id) === 'project') {
@@ -295,6 +303,7 @@ add_action( 'save_post', 'set_gallery_index' );
 
 function save_photograph_tags( $post_id ) {
 
+  // if hell
 	if ( wp_is_post_revision( $post_id ) ) {
 		return;
   } else if (get_post_type($post_id) === 'photograph') {
@@ -316,6 +325,7 @@ add_action( 'save_post', 'save_photograph_tags' );
 
 function save_photograph_title( $post_id ) {
 
+  // if hell
   if ( wp_is_post_revision( $post_id ) ) {
     return;
   } else if (get_post_type($post_id) === 'photograph') {
@@ -324,6 +334,7 @@ function save_photograph_title( $post_id ) {
     $attachment = get_post( $attachment_id );
     if ($attachment) {
       $title = $attachment->post_title;
+      // >> use wp_update_post() instead of $wpdb
       global $wpdb;
       $wpdb->update( $wpdb->posts, array( 'post_title' =>  $title, 'post_name' => $title ), array( 'ID' => $post_id ) );
     }
@@ -341,6 +352,4 @@ add_action( 'save_post', 'save_photograph_title' );
 // METADATA FOR UPLOADS
 
 get_template_part( 'lib/iptc' );
-
-
 ?>
