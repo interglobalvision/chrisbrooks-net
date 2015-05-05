@@ -186,13 +186,11 @@ function add_photos_empty_gallery( $post_id ) {
     return;
   } else if (get_post_type($post_id) === 'project') {
     if (empty($_POST[$gallery_key])) {
-      $photos = get_posts('post_type=photograph&posts_per_page=-1&meta_key=' . $parent_key . '&meta_value=' . $post_id);
+      $photos = get_posts('fields=ids&post_type=photograph&posts_per_page=-1&meta_key=' . $parent_key . '&meta_value=' . $post_id);
       if ($photos) {
-        $photos_array = array();
-        foreach ($photos as $photo) {
-          array_push($photos_array, $photo->ID);
+        if( !update_post_meta($post_id, $gallery_key, $photos) ) {
+          add_post_meta($post_id, $gallery_key, $photos);
         }
-        update_post_meta($post_id, $gallery_key, $photos_array);
       }
     }
     return;
@@ -202,7 +200,7 @@ function add_photos_empty_gallery( $post_id ) {
   }
 
 }
-add_action( 'save_post', 'add_photos_empty_gallery' );
+add_action( 'save_post', 'add_photos_empty_gallery', 11 );
 
 // SAVE FIG ON POST SAVE
 
