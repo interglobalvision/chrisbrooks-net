@@ -41,7 +41,8 @@ function igv_cmb_metaboxes() {
   }
 
   $parent_args = array(
-    'post_type' => 'project'
+    'post_type' => 'project',
+    'post_status' => 'any'
   );
 
   $gallery_args = array(
