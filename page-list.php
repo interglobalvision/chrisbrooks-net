@@ -5,7 +5,8 @@ Template Name: List archive
 get_header();
 $args = array(
   'posts_per_page' => -1,
-  'post_type' => 'project'
+  'post_type' => 'project',
+  'order' => 'ASC'
 );
 ?>
 
