@@ -91,7 +91,7 @@ var Spreads = {
 
   containerLayoutFix: function() {
     var _this = this;
-    _this.containerMargin = parseInt($('#header').css('margin-top'), 10);
+    _this.containerMargin = parseInt($('#header').css('padding-top'), 10);
     _this.containerHeight = windowHeight - $('#header').outerHeight(true) - _this.containerMargin;
 
     $('#spread-container').height( _this.containerHeight );
@@ -149,6 +149,12 @@ var Spreads = {
     var random = getRandomInt(0, length);
 
     $('.home-spread').eq(random).addClass('home-spread-active');
+    var spreadColor = $('.home-spread-active').attr('data-color');
+    if (typeof(spreadColor) != "undefined") {
+      $('body').css('background-color', spreadColor);
+    } else {
+      $('body').css('background-color', 'rgb(253,253,253)');
+    }
 
   },
 
@@ -162,6 +168,13 @@ var Spreads = {
       nextSpread.addClass('home-spread-active');
     } else {
       $('.home-spread').first().addClass('home-spread-active');
+    }
+
+    var spreadColor = $('.home-spread-active').attr('data-color');
+    if (typeof(spreadColor) != "undefined") {
+      $('body').css('background-color', spreadColor);
+    } else {
+      $('body').css('background-color', 'rgb(253,253,253)');
     }
 
     this.resizeImages();
