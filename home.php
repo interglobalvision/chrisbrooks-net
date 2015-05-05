@@ -3,7 +3,6 @@ get_header();
 ?>
 
 <!-- main content -->
-
 <main id="main-content">
   <section id="spread-container">
 <?php
@@ -13,7 +12,9 @@ $spreads = get_posts(array(
 ));
 if ($spreads) {
   foreach ($spreads as $post) {
+    $spread_color = get_post_meta( $post->ID, '_igv_spread_color' );
 ?>
+  <div class="spread-wrapper" <?php if ($spread_color) { echo 'style="background-color: ' . $spread_color[0] . '"'; } ?>>
     <div class="home-spread">
 <?php
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
@@ -51,6 +52,7 @@ if ($spreads) {
     }
 ?>
     </div>
+  </div>
 <?php
   }
 }

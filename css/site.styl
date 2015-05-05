@@ -112,7 +112,14 @@ img
 // HEADER
 
 #header
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
   margin-top: $margin-basic
+  z-index: 1
+
+#header-container
   margin-bottom: $margin-basic
 
 #menu
@@ -124,14 +131,23 @@ img
 // HOME
 
 #spread-container
-  position: relative
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  
+.spread-wrapper 
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: none
 
 .home-spread
   position: absolute
   width: 100%
   height: 100%
-  background-color: $color-white-soft
-  display: none
 
 .home-spread-active
   display: block

@@ -136,6 +136,13 @@ function igv_cmb_metaboxes() {
       'show_names'    => true, // Show field names on the left
     ) );
 
+  $spread_colorpicker = $spread_meta->add_field( array(
+    'name'    => 'Spread color',
+    'id'      => $prefix . 'spread_color',
+    'type'    => 'colorpicker',
+    'default' => '#FDFDFD',
+  ) );
+
   $spread_meta_group = $spread_meta->add_field( array(
       'id'          => $prefix . 'spread_images',
       'type'        => 'group',

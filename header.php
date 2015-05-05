@@ -45,23 +45,23 @@
 </head>
 <body <?php body_class(); ?>>
 <!--[if lt IE 7]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p><![endif]-->
-
 <?php if (!is_single()) { ?>
-<header id="header" class="container">
-  <div class="row">
-    <div class="col col6">
-      <a href="<?php echo home_url(); ?>">chris brooks</a>
-    </div>
-    <div class="col col6 u-align-right">
-      <ul id="menu" class="font-italic">
-        <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
-        <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
-        <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
-        <li><a href="<?php echo home_url('search/'); ?>">search</a></li>
-      </ul>
+<header id="header">
+  <div id="header-container" class="container">
+    <div class="row">
+      <div class="col col6">
+        <a href="<?php echo home_url(); ?>">chris brooks</a>
+      </div>
+      <div class="col col6 u-align-right">
+        <ul id="menu" class="font-italic">
+          <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
+          <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
+          <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
+          <li><a href="<?php echo home_url('search/'); ?>">search</a></li>
+        </ul>
+      </div>
     </div>
   </div>
-</header>
 <?php
 if (is_search() || is_tag() || is_page('Search')) {
 ?>
@@ -104,7 +104,6 @@ if (is_search() || is_tag() || is_page('Search')) {
 </section>
 
 
-<?php
-}
-} //end if
-?>
+<?php } ?>
+</header>
+<?php } //end if ?>
