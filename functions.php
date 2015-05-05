@@ -182,9 +182,7 @@ function add_photos_empty_gallery( $post_id ) {
   $gallery_key = '_igv_gallery';
   $parent_key = '_igv_parent';
 
-  if ( wp_is_post_revision( $post_id ) ) {
-    return;
-  } else if (get_post_type($post_id) === 'project') {
+  if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'project') {
     if (empty($_POST[$gallery_key])) {
       $photos = get_posts('fields=ids&post_type=photograph&posts_per_page=-1&meta_key=' . $parent_key . '&meta_value=' . $post_id);
       if ($photos) {
@@ -193,11 +191,8 @@ function add_photos_empty_gallery( $post_id ) {
         }
       }
     }
-    return;
-
-  } else {
-    return;
   }
+  return;
 
 }
 add_action( 'save_post', 'add_photos_empty_gallery', 11 );
@@ -256,21 +251,15 @@ function set_project_featured_image( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
-  if ( wp_is_post_revision( $post_id ) ) {
-    return;
-  } else if (get_post_type($post_id) === 'project') {
-
-    if (isset($_POST[$meta_key])) {
+  if ( !wp_is_post_revision($post_id) && get_post_type($post_id) === 'project') {
+    if ( !has_post_thumbnail($post_id) && isset($_POST[$meta_key])) {
       $gallery = explode(',', $_POST[$meta_key]);
       $photo_id = $gallery[0];
       $thumb_id = get_post_thumbnail_id( $photo_id );
       set_post_thumbnail( $post_id, $thumb_id );
     }
-    return;
-
-  } else {
-    return;
   }
+  return;
 
 }
 add_action( 'save_post', 'set_project_featured_image' );
