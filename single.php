@@ -49,10 +49,12 @@ if( have_posts() ) {
             $post_id = $image;
             $index = get_post_meta( $post_id, '_igv_gallery_index', true);
             $img_id = get_post_thumbnail_id( $post_id );
+            $img_obj = get_post( $img_id );
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
-            $caption = get_the_title($post_id);
+            $photo_title = get_the_title($post_id);
+            $photo_caption = $img_obj->post_excerpt;
 ?>
             <div class="js-slick-item slider-item" 
             data-index="<?php echo $index; ?>">
@@ -63,7 +65,15 @@ if( have_posts() ) {
                   data-large="<?php echo $imgLarge[0]; ?>" 
                   data-largest="<?php echo $imgLargest[0]; ?>" />
                   <div id="single-slider-text">
-                    <span>fig.<?php echo $fig; ?>, <?php if ($title) { echo $title . ', '; } ?><em><?php echo $caption; ?></em>, <?php echo $index; ?> of <?php echo $length[0]; ?>, </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next</span>
+                    <span><?php 
+                      if (! empty($fig)) { echo 'fig. ' . $fig; }
+                      if ($length[0] > 1 && ! empty($title)) { echo ', ' . $title; }
+                      if (! empty($photo_title)) { echo ', <em>' . $photo_title . '</em>'; }
+                      if (! empty($photo_caption)) { echo ', <em>' . $photo_caption . '</em>'; }
+                      if ($length[0] > 1) { 
+                        echo ', ' . $index . ' of ' . $length[0]; 
+                        echo ', </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next';
+                      } ?></span>
                   </div>
                 </div>
               </div>
