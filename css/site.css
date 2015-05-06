@@ -989,6 +989,16 @@ img {
   font-size: 15px;
   font-weight: normal;
 }
+#list-of-posts {
+  -webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 16px;
+     -moz-column-gap: 16px;
+          column-gap: 16px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
 .list-project {
   margin-bottom: 8px;
 }
