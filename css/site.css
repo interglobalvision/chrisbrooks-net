@@ -999,6 +999,11 @@ img {
   padding: 0 8px;
   box-sizing: border-box;
 }
+#list-of-posts article {
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid-column;
+}
 .list-project {
   margin-bottom: 8px;
 }

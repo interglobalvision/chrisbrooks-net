@@ -204,6 +204,10 @@ img
   column-gap: $gutter
   padding: 0 ($gutter / 2)
   box-sizing: border-box
+  article
+    -webkit-column-break-inside: avoid
+    page-break-inside: avoid
+    break-inside: avoid-column
 
 .list-project
   margin-bottom: $margin-tiny
