@@ -77,15 +77,12 @@ function new_add_post_thumbnail_column($cols){
 
 add_action('manage_posts_custom_column', 'new_display_post_thumbnail_column', 5, 2);
 function new_display_post_thumbnail_column($col, $id){
-  // >> This could be an if
-  switch($col){
-    case 'new_post_thumb':
+  if($col == 'new_post_thumb') {
     if( function_exists('the_post_thumbnail') ) {
       echo the_post_thumbnail( 'admin-thumb' );
-      }
-    else
-    echo 'Not supported in theme';
-    break;
+    } else {
+      echo 'Not supported in theme';
+    }
   }
 }
 
@@ -168,19 +165,17 @@ function pr($data){
 }
 
 // PRE GET POSTS
-
+add_action('pre_get_posts','tag_archive_filter');
 function tag_archive_filter($query) {
-  // >> Any reason why this is split is two different ifs?
   if ( !is_admin() && $query->is_main_query() ) {
     if ($query->is_tag) {
       $query->set('post_type', array( 'post', 'project', 'photograph' ));
     }
   }
 }
-add_action('pre_get_posts','tag_archive_filter');
 
 // ADD PHOTOGRAPHS TO EMPTY GALLERY ON PROJECT SAVE
-
+add_action( 'save_post', 'add_photos_empty_gallery', 11 );
 function add_photos_empty_gallery( $post_id ) {
 
   $gallery_key = '_igv_gallery';
@@ -196,64 +191,48 @@ function add_photos_empty_gallery( $post_id ) {
       }
     }
   }
+
   return;
 
 }
-add_action( 'save_post', 'add_photos_empty_gallery', 11 );
 
 // SAVE FIG ON POST SAVE
-
+add_action( 'save_post', 'set_fig_values' );
 function set_fig_values( $post_id ) {
 
   $meta_key = '_igv_fig';
 
-  // >> if hell, could be simplier
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-  } else if (get_post_type($post_id) === 'project') {
+	if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'project') {
 
     $projects = get_posts('post_type=project&posts_per_page=-1&order=ASC');
-    // >> use for instead of foreach
-    $i = 1;
-    foreach ($projects as $post) {
-      update_post_meta($post->ID, $meta_key, $i);
-      $i++;
+    foreach ($projects as $key => $post) {
+      update_post_meta($post->ID, $meta_key, $key + 1);
     }
-    return;
-
-  } else {
-    return;
   }
 
+  return;
+
 }
-add_action( 'save_post', 'set_fig_values' );
 
 // SAVE GALLERY LENGTH ON POST SAVE
-
+add_action( 'save_post', 'set_gallery_length' );
 function set_gallery_length( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
-  // if hell
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-  } else if (get_post_type($post_id) === 'project') {
-
+	if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'project') {
     if (isset($_POST[$meta_key])) {
       $gallery = explode(',', $_POST[$meta_key]);
       update_post_meta($post_id, '_igv_gallery_length', count($gallery));
     }
-    return;
-
-  } else {
-    return;
   }
 
+  return;
+
 }
-add_action( 'save_post', 'set_gallery_length' );
 
 // SAVE FEATURED IMAGE FROM GALLERY ON POST SAVE
-
+add_action( 'save_post', 'set_project_featured_image' );
 function set_project_featured_image( $post_id ) {
 
   $meta_key = '_igv_gallery';
@@ -266,88 +245,67 @@ function set_project_featured_image( $post_id ) {
       set_post_thumbnail( $post_id, $thumb_id );
     }
   }
+
   return;
 
 }
-add_action( 'save_post', 'set_project_featured_image' );
 
 // SAVE PHOTOGRAPH POSITION IN  GALLERY ON POST SAVE
-
+add_action( 'save_post', 'set_gallery_index' );
 function set_gallery_index( $post_id ) {
 
   $meta_key = '_igv_gallery';
 
-  // if hell
-  if ( wp_is_post_revision( $post_id ) ) {
-    return;
-  } else if (get_post_type($post_id) === 'project') {
+  if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'project') {
 
-    if (isset($_POST[$meta_key])) {
+    if ( isset($_POST[$meta_key]) ) {
       $gallery = explode(',', $_POST[$meta_key]);
-      $pos = 1;
-      foreach ($gallery as $photo) {
-        update_post_meta($photo, '_igv_gallery_index', $pos);
-        $pos++;
+      foreach ($gallery as $pos => $photo) {
+        update_post_meta($photo, '_igv_gallery_index', 0);
       }
     }
-    return;
-
-  } else {
-    return;
   }
 
+  return;
+
 }
-add_action( 'save_post', 'set_gallery_index' );
 
 // SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
-
+add_action( 'save_post', 'save_photograph_tags' );
 function save_photograph_tags( $post_id ) {
 
-  // if hell
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-  } else if (get_post_type($post_id) === 'photograph') {
-
+	if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'photograph') {
     $image = get_attached_file(get_post_thumbnail_id( $post_id ));
     $tags = igv_read_image_keywords($image);
 
     wp_set_object_terms( $post_id, $tags, 'post_tag' );
-    return;
-
-  } else {
-    return;
   }
 
+  return;
+
 }
-add_action( 'save_post', 'save_photograph_tags' );
 
 // SAVE TITLE FOR PHOTOGRAPHS ON POST SAVE
-
+add_action( 'save_post', 'save_photograph_title' );
 function save_photograph_title( $post_id ) {
 
-  // if hell
-  if ( wp_is_post_revision( $post_id ) ) {
-    return;
-  } else if (get_post_type($post_id) === 'photograph') {
+  if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'photograph') {
 
     $attachment_id = get_post_thumbnail_id( $post_id );
     $attachment = get_post( $attachment_id );
     if ($attachment) {
       $title = $attachment->post_title;
-      // >> use wp_update_post() instead of $wpdb
-      global $wpdb;
-      $wpdb->update( $wpdb->posts, array( 'post_title' =>  $title, 'post_name' => $title ), array( 'ID' => $post_id ) );
+      wp_update_post( array(
+        'ID' => $post_id,
+        'post_title' =>  $title,
+        'post_name' => $title
+      ) );
     }
-
-    return;
-
-  } else {
-    return;
   }
 
-}
-add_action( 'save_post', 'save_photograph_title' );
+  return;
 
+}
 
 // METADATA FOR UPLOADS
 
