@@ -81,7 +81,7 @@ function register_cpt_photograph() {
         'labels' => $labels,
         'hierarchical' => false,
 
-        'supports' => array( 'title', 'thumbnail' ),
+        'supports' => array( 'title', 'thumbnail', 'editor' ),
         'taxonomies' => array( 'post_tag' ),
 
         'public' => true,
