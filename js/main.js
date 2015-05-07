@@ -246,6 +246,9 @@ jQuery(document).ready(function () {
   // CONDITIONAL INITS
 
   if ( $('.js-packery-container').length ) {
+
+    $('#loader').css('opacity', 1);
+
     $('.js-packery-container').imagesLoaded( function() {
       $('.js-packery-container').packery({
         itemSelector: '.js-packery-item',
@@ -254,6 +257,8 @@ jQuery(document).ready(function () {
       }).css({
         'opacity': 1
       });
+      $('#loader').css('opacity', 0);
+
     });
   }
 

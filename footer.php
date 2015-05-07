@@ -26,5 +26,13 @@
     }
   </script>
 
+  <div id="loader">
+    <div class="u-holder">
+      <div class="u-held u-align-center">
+        loading<span id="loader-1">.</span><span id="loader-2">.</span><span id="loader-3">.</span>
+      </div>
+    </div>
+  </div>
+
   </body>
 </html>
