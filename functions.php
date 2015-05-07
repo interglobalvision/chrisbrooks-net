@@ -299,10 +299,11 @@ function save_photograph_title( $post_id ) {
     $attachment = get_post( $attachment_id );
     if ($attachment) {
       $title = $attachment->post_title;
+      $caption = $attachment->post_excerpt;
       wp_update_post( array(
         'ID' => $post_id,
         'post_title' =>  $title,
-        'post_name' => $title
+        'post_name' => $title,
       ) );
     }
   }
