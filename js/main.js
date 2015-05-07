@@ -244,6 +244,9 @@ jQuery(document).ready(function () {
   l('Hola Globie');
 
   // CONDITIONAL INITS
+  if ( $('.js-grid-img').length ) {
+    lazyLoadImages('.js-grid-img');
+  }
 
   if ( $('.js-packery-container').length ) {
 

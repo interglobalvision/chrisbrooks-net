@@ -14,11 +14,19 @@ if( have_posts() ) {
   while( have_posts() ) {
     the_post();
     $meta = get_post_meta( $post->ID );
+    $img_id = get_post_thumbnail_id( $post->ID );
+    $img = wp_get_attachment_image_src($img_id, 'grid-basic');
+    $imgLarge = wp_get_attachment_image_src($img_id, 'grid-large');
+    $imgLargest = wp_get_attachment_image_src($img_id, 'grid-largest');
 ?>
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink(); ?>">
-        <?php the_post_thumbnail(); ?>
+        <img class="js-grid-img"
+          data-basic="<?php echo $img[0]; ?>"
+          data-large="<?php echo $imgLarge[0]; ?>"
+          data-largest="<?php echo $imgLargest[0]; ?>" />
+<!--         <?php the_post_thumbnail(); ?> -->
         <div class="grid-hover-holder">
           <div class="u-holder">
             <div class="u-held">
