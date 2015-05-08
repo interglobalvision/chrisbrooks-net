@@ -26,7 +26,6 @@ if( have_posts() ) {
           data-basic="<?php echo $img[0]; ?>"
           data-large="<?php echo $imgLarge[0]; ?>"
           data-largest="<?php echo $imgLargest[0]; ?>" />
-<!--         <?php the_post_thumbnail(); ?> -->
         <div class="grid-hover-holder">
           <div class="u-holder">
             <div class="u-held">

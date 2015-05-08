@@ -44,7 +44,8 @@ if( have_posts() ) {
         </nav>
 <?php } ?>
         <div class="js-slick-container<?php if ($length != 1) {echo ' u-pointer';} ?>">
-          <?php
+<?php
+        if ($images) {
           foreach($images as $image) {
             $post_id = $image;
             $index = get_post_meta( $post_id, '_igv_gallery_index', true);
@@ -56,29 +57,32 @@ if( have_posts() ) {
             $photo_title = get_the_title($post_id);
             $photo_caption = $img_obj->post_excerpt;
 ?>
-            <div class="js-slick-item slider-item" 
+            <div class="js-slick-item slider-item"
             data-index="<?php echo $index; ?>">
               <div class="u-holder">
                 <div class="u-held">
-                  <img class="slider-img" 
-                  data-basic="<?php echo $img[0]; ?>" 
-                  data-large="<?php echo $imgLarge[0]; ?>" 
+                  <img class="slider-img"
+                  data-basic="<?php echo $img[0]; ?>"
+                  data-large="<?php echo $imgLarge[0]; ?>"
                   data-largest="<?php echo $imgLargest[0]; ?>" />
                   <div id="single-slider-text">
-                    <span><?php 
+                    <span><?php
                       if (! empty($fig)) { echo 'fig. ' . $fig; }
                       if ($length[0] > 1 && ! empty($title)) { echo ', ' . $title; }
                       if (! empty($photo_title)) { echo ', <em>' . $photo_title . '</em>'; }
                       if (! empty($photo_caption)) { echo ', <em>' . $photo_caption . '</em>'; }
-                      if ($length[0] > 1) { 
-                        echo ', ' . $index . ' of ' . $length[0]; 
+                      if ($length[0] > 1) {
+                        echo ', ' . $index . ' of ' . $length[0];
                         echo ', </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next';
                       } ?></span>
                   </div>
                 </div>
               </div>
             </div><!-- end js-slick-item -->
-<?php } ?>
+<?php
+          }
+        }
+?>
         </div><!-- end js-slick-container -->
 
       </div>
