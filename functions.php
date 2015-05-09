@@ -173,7 +173,7 @@ add_action('pre_get_posts','tag_archive_filter');
 function tag_archive_filter($query) {
   if ( !is_admin() && $query->is_main_query() ) {
     if ($query->is_tag) {
-      $query->set('post_type', array( 'post', 'project', 'photograph' ));
+      $query->set('post_type', array( 'photograph' ));
     }
   }
 }
