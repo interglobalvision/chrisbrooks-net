@@ -61,10 +61,12 @@ if( have_posts() ) {
             data-index="<?php echo $index; ?>">
               <div class="u-holder">
                 <div class="u-held">
-                  <img class="slider-img"
+                  <a href="<?php echo $nextLink; ?>">
+                    <img class="slider-img"
                   data-basic="<?php echo $img[0]; ?>"
                   data-large="<?php echo $imgLarge[0]; ?>"
                   data-largest="<?php echo $imgLargest[0]; ?>" />
+                  </a>
                   <div id="single-slider-text" class="font-caption">
                     <span><?php
                       if (! empty($fig)) {
