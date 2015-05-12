@@ -1094,10 +1094,15 @@ img {
   box-sizing: border-box;
   padding: 0 32px;
 }
+.slick-slide .u-held {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
 .slider-img {
   margin: 0 auto;
 }
-#single-slider-text {
+.single-slider-text {
   text-align: center;
   padding: 1em 0;
   display: block;

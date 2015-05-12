@@ -109,11 +109,12 @@ var Spreads = {
       $(this).css('height','');
 
       var $this = $(this),
-      imageWrapHeight = $this.height(),
-      position = $this.position(),
-      top = position.top,
-      scale = ($this.attr('data-scale')*0.01),
-      imageCaptionHeight = $this.find('.spread-image-caption').outerHeight();
+        imageWrapHeight = $this.height(),
+        imageMaxHeight,
+        position = $this.position(),
+        top = position.top,
+        scale = ($this.attr('data-scale')*0.01),
+        imageCaptionHeight = $this.find('.spread-image-caption').outerHeight();
 
       if ((imageWrapHeight + top) > _this.containerHeight) {
 
@@ -129,9 +130,9 @@ var Spreads = {
         if (scale > 1) {
           scale = 1;
         }
-        var imageMaxHeight = (imageWrapHeight*scale) - imageCaptionHeight;
+        imageMaxHeight = (imageWrapHeight*scale) - imageCaptionHeight;
       } else {
-        var imageMaxHeight = imageWrapHeight - imageCaptionHeight;
+        imageMaxHeight = imageWrapHeight - imageCaptionHeight;
       }
 
       if (imageMaxHeight < 60) {
@@ -150,7 +151,7 @@ var Spreads = {
 
     $('.home-spread').eq(random).addClass('home-spread-active');
     var spreadColor = $('.home-spread-active').attr('data-color');
-    if (typeof(spreadColor) != "undefined") {
+    if (typeof(spreadColor) !== 'undefined') {
       $('body').css('background-color', spreadColor);
     } else {
       $('body').css('background-color', 'rgb(253,253,253)');
@@ -171,7 +172,7 @@ var Spreads = {
     }
 
     var spreadColor = $('.home-spread-active').attr('data-color');
-    if (typeof(spreadColor) != "undefined") {
+    if (typeof(spreadColor) !== 'undefined') {
       $('body').css('background-color', spreadColor);
     } else {
       $('body').css('background-color', 'rgb(253,253,253)');
@@ -199,6 +200,17 @@ var Slick = {
 
         // lazy load images for screen resolution
         lazyLoadImages('.slider-img');
+
+        // fade in slides when image loaded
+
+        $('.slick-active').imagesLoaded( function() {
+          $('.slick-active').find('.u-held').css( 'opacity' , 1 );
+        });
+
+
+        $('#single-slider').imagesLoaded( function() {
+          $('.u-held').css('opacity', 1);
+        });
 
         // fix images for window height
         _this.resizeImages();
@@ -241,7 +253,6 @@ var Slick = {
 
 jQuery(document).ready(function () {
   'use strict';
-  l('Hola Globie');
 
   // CONDITIONAL INITS
   if ( $('.js-grid-img').length ) {

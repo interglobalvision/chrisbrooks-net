@@ -27,7 +27,7 @@ if( have_posts() ) {
             <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
           </a>
         </nav>
-        <div class="js-slick-container<?php if ($length != 1) {echo ' u-pointer';} ?>">
+        <div class="js-slick-container">
 <?php
         if ($images) {
           foreach($images as $image) {
@@ -57,8 +57,8 @@ if( have_posts() ) {
 ?>>
                     <img class="slider-img" data-basic="<?php echo $img[0]; ?>" data-large="<?php echo $imgLarge[0]; ?>" data-largest="<?php echo $imgLargest[0]; ?>" />
                   </a>
-                  <div id="single-slider-text" class="font-caption">
-                    <span><?php
+                  <div class="single-slider-text font-caption">
+                    <?php
                       if (!empty($fig)) {
                         echo 'fig. ' . $fig;
                       }
@@ -77,8 +77,8 @@ if( have_posts() ) {
 
                       if ($length[0] > 1) {
                         echo ', ' . $index . ' of ' . $length[0];
-                        echo ', </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next';
-                      } ?></span>
+                        echo ', </span><span class="slick-prev" class="u-pointer">Prev</span><span> / </span><span class="slick-next" class="u-pointer">Next';
+                      } ?>
                   </div>
                 </div>
               </div>
