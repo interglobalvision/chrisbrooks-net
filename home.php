@@ -15,7 +15,7 @@ if ($spreads) {
   foreach ($spreads as $post) {
     $spread_color = get_post_meta( $post->ID, '_igv_spread_color' );
 ?>
-    <div class="home-spread"<?php if ($spread_color) { echo ' data-color="' . $spread_color[0] . '"'; } ?>>
+    <div class="home-spread u-pointer"<?php if ($spread_color) { echo ' data-color="' . $spread_color[0] . '"'; } ?>>
 <?php
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
     foreach ($spreadImages[0] as $image) {
@@ -48,11 +48,11 @@ if ($spreads) {
         echo 'max-width: ' . $image['maxwidth'] . '%;';
       }
 ?>">
-        <img class="spread-image u-pointer" src="<?php echo $img_default[0]; ?>"/>
+        <img class="spread-image" src="<?php echo $img_default[0]; ?>"/>
 <?php
   if (!empty($project_id)) {
 ?>
-        <span class="spread-image-caption font-caption"><a href="<?php echo $project_url . '#' . $index; ?>">fig. <?php echo $fig; ?>&emsp;&bull;</a></span>
+        <span class="spread-image-caption font-caption"><a href="<?php echo $project_url . '#' . $index; ?>">fig. <?php echo $fig; ?></a></span>
 <?php
   }
 ?>

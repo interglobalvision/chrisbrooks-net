@@ -78,8 +78,11 @@ var Spreads = {
     _this.containerLayoutFix();
     _this.resizeImages();
 
-    $('.spread-image').on('click', function() {
-      _this.nextSpread();
+    $('.home-spread').on('click', function(e) {
+      l(e);
+      if (e.target.tagName !== 'A') {
+        _this.nextSpread();
+      }
     });
 
     $(window).resize( $.debounce( 250, function() {
