@@ -995,6 +995,10 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
+.grid-hover {
+  box-sizing: border-box;
+  padding: 3px;
+}
 .grid-hover img {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
