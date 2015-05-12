@@ -206,7 +206,7 @@ function set_fig_values( $post_id ) {
 
   $meta_key = '_igv_fig';
 
-	if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'project') {
+	if ( !wp_is_post_revision( $post_id ) && ( get_post_type($post_id) === 'project' || get_post_type($post_id) === 'photograph' ) ) {
 
     $projects = get_posts('post_type=project&posts_per_page=-1&order=ASC');
     foreach ($projects as $key => $post) {
