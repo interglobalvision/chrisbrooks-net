@@ -42,11 +42,13 @@ function igv_cmb_metaboxes() {
 
   $parent_args = array(
     'post_type' => 'project',
-    'post_status' => 'any'
+    'post_status' => 'any',
+    'posts_per_page' => -1
   );
 
   $gallery_args = array(
     'post_type'   => 'photograph',
+    'posts_per_page' => -1,
     'meta_query' => array(
       array(
         'key' => '_igv_parent',
