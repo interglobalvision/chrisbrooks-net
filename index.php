@@ -28,7 +28,7 @@ if( have_posts() ) {
           data-largest="<?php echo $imgLargest[0]; ?>" />
         <div class="grid-hover-holder">
           <div class="u-holder">
-            <div class="u-held">
+            <div class="u-held font-caption">
               <span>fig. <?php echo $meta['_igv_fig'][0]; ?></span>
               <h2><?php the_title(); ?></h2>
             </div>

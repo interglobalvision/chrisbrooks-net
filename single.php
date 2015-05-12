@@ -65,12 +65,24 @@ if( have_posts() ) {
                   data-basic="<?php echo $img[0]; ?>"
                   data-large="<?php echo $imgLarge[0]; ?>"
                   data-largest="<?php echo $imgLargest[0]; ?>" />
-                  <div id="single-slider-text">
+                  <div id="single-slider-text" class="font-caption">
                     <span><?php
-                      if (! empty($fig)) { echo 'fig. ' . $fig; }
-                      if ($length[0] > 1 && ! empty($title)) { echo ', ' . $title; }
-                      if (! empty($photo_title)) { echo ', <em>' . $photo_title . '</em>'; }
-                      if (! empty($photo_caption)) { echo ', <em>' . $photo_caption . '</em>'; }
+                      if (! empty($fig)) {
+                        echo 'fig. ' . $fig;
+                      }
+
+                      if ($length[0] > 1 && ! empty($title)) {
+                        echo ', ' . $title;
+                      }
+
+                      if (! empty($photo_title)) {
+                        echo ', <em>' . $photo_title . '</em>';
+                      }
+
+                      if (! empty($photo_caption)) {
+                        echo ', <em>' . $photo_caption . '</em>';
+                      }
+
                       if ($length[0] > 1) {
                         echo ', ' . $index . ' of ' . $length[0];
                         echo ', </span><span id="slick-prev" class="u-pointer">Prev</span><span> / </span><span id="slick-next" class="u-pointer">Next';

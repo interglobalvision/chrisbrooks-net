@@ -52,7 +52,7 @@ if ($spreads) {
 <?php
   if (!empty($project_id)) {
 ?>
-        <span class="spread-image-caption"><a href="<?php echo $project_url . '#' . $index; ?>">fig. <?php echo $fig; ?>&emsp;&bull;</a></span>
+        <span class="spread-image-caption font-caption"><a href="<?php echo $project_url . '#' . $index; ?>">fig. <?php echo $fig; ?>&emsp;&bull;</a></span>
 <?php
   }
 ?>

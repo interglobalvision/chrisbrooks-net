@@ -851,7 +851,7 @@ body {
   font-family: 'adobe-caslon-pro', serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35em;
   letter-spacing: 0.001em;
 }
@@ -863,11 +863,11 @@ h3 {
   font-size: 30px;
 }
 h4 {
-  font-size: 15px;
+  font-size: 16px;
 }
 h5,
 h6 {
-  font-size: 12px;
+  font-size: 13px;
 }
 h1,
 h2,
@@ -892,6 +892,10 @@ b,
 }
 .font-gray {
   color: #808080;
+}
+.font-caption {
+  font-size: 13px;
+  line-height: 1.35em;
 }
 a,
 a:active,
@@ -1015,7 +1019,7 @@ img {
           transition: opacity 0.3s;
 }
 .grid-hover-holder h2 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: normal;
 }
 #list-of-posts {
@@ -1055,7 +1059,7 @@ img {
   z-index: 99999;
 }
 .single-nav svg {
-  width: 15px;
+  width: 16px;
 }
 #single-close {
   top: 16px;
