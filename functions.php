@@ -320,6 +320,28 @@ function save_photograph_title( $post_id ) {
 
 }
 
+// SAVE PHOTOGRAPH'S THUMBNAIL PARENT ON POST SAVE
+add_action( 'save_post', 'save_photograph_thumb_parent', 20 );
+function save_photograph_thumb_parent( $post_id ) {
+
+  if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'photograph') {
+
+    $attachment_id = get_post_thumbnail_id( $post_id );
+    if ($attachment_id) {
+
+      // Set thumbnail's post parent
+      wp_update_post( array(
+        'ID' => $attachment_id,
+        'post_parent' => $post_id,
+      ) );
+
+    }
+  }
+
+  return;
+
+}
+
 // METADATA FOR UPLOADS
 
 get_template_part( 'lib/iptc' );
