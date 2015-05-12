@@ -17,7 +17,7 @@ if( have_posts() ) {
       <div id="single-slider">
 
         <nav id="single-close" class="single-nav">
-          <a href="<?php echo home_url('project/'); ?>">
+          <a href="<?php echo home_url('list-of-works/'); ?>">
             <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
           </a>
         </nav>
