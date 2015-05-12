@@ -10,6 +10,12 @@ if( have_posts() ) {
     $length = get_post_meta( $post->ID, '_igv_gallery_length', true );
     $fig = get_post_meta( $post->ID, '_igv_fig', true );
     $title = get_the_title( $post );
+    $nextPost = get_adjacent_post(null, null, false);
+    if ($nextPost) {
+      $nextLink = get_permalink($nextPost->ID);
+    } else {
+      $nextLink = home_url('list-of-works/');
+    }
 ?>
 
     <article <?php post_class('viewer'); ?> id="post-<?php the_ID(); ?>">
@@ -21,55 +27,39 @@ if( have_posts() ) {
             <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); ?>
           </a>
         </nav>
-<?php
-  $nextPost = get_adjacent_post(null, null, false);
-  if ($nextPost) {
-    $nextLink = get_permalink($nextPost->ID);
-?>
-        <nav id="single-next" class="single-nav">
-          <a href="<?php echo $nextLink; ?>">
-            <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/next.svg'); ?>
-          </a>
-        </nav>
-<?php
-  }
-  $previousPost = get_adjacent_post();
-  if ($previousPost) {
-    $prevLink = get_permalink($previousPost->ID);
-?>
-        <nav id="single-prev" class="single-nav">
-          <a href="<?php echo $prevLink; ?>">
-            <?php echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/prev.svg'); ?>
-          </a>
-        </nav>
-<?php } ?>
         <div class="js-slick-container<?php if ($length != 1) {echo ' u-pointer';} ?>">
 <?php
         if ($images) {
           foreach($images as $image) {
             $post_id = $image;
+            $post = get_post($post_id);
             $index = get_post_meta( $post_id, '_igv_gallery_index', true);
+
             $img_id = get_post_thumbnail_id( $post_id );
-            $img_obj = get_post( $img_id );
+
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
-            $photo_title = get_the_title($post_id);
-            $photo_caption = $img_obj->post_excerpt;
+
+            $photo_title = $post->post_title;
+            $photo_caption = $post->post_content;
 ?>
             <div class="js-slick-item slider-item"
             data-index="<?php echo $index; ?>">
               <div class="u-holder">
                 <div class="u-held">
-                  <a href="<?php echo $nextLink; ?>">
-                    <img class="slider-img"
-                  data-basic="<?php echo $img[0]; ?>"
-                  data-large="<?php echo $imgLarge[0]; ?>"
-                  data-largest="<?php echo $imgLargest[0]; ?>" />
+                  <a <?php
+              if ($index === $length[0]) {
+                echo 'href="' . $nextLink . '"';
+              } else {
+                echo 'class="js-next-slide"';
+              }
+?>>
+                    <img class="slider-img" data-basic="<?php echo $img[0]; ?>" data-large="<?php echo $imgLarge[0]; ?>" data-largest="<?php echo $imgLargest[0]; ?>" />
                   </a>
                   <div id="single-slider-text" class="font-caption">
                     <span><?php
-                      if (! empty($fig)) {
+                      if (!empty($fig)) {
                         echo 'fig. ' . $fig;
                       }
 
@@ -77,11 +67,11 @@ if( have_posts() ) {
                         echo ', ' . $title;
                       }
 
-                      if (! empty($photo_title)) {
+                      if (!empty($photo_title)) {
                         echo ', <em>' . $photo_title . '</em>';
                       }
 
-                      if (! empty($photo_caption)) {
+                      if (!empty($photo_caption)) {
                         echo ', <em>' . $photo_caption . '</em>';
                       }
 

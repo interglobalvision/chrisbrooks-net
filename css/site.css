@@ -1091,6 +1091,8 @@ img {
 }
 .slick-slide {
   background: #fdfdfd;
+  box-sizing: border-box;
+  padding: 0 32px;
 }
 .slider-img {
   margin: 0 auto;
