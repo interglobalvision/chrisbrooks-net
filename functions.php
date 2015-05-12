@@ -265,7 +265,7 @@ function set_gallery_index( $post_id ) {
     if ( isset($_POST[$meta_key]) ) {
       $gallery = explode(',', $_POST[$meta_key]);
       foreach ($gallery as $pos => $photo) {
-        update_post_meta($photo, '_igv_gallery_index', 0);
+        update_post_meta($photo, '_igv_gallery_index', ($pos + 1));
       }
     }
   }

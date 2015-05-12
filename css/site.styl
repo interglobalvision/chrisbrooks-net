@@ -76,6 +76,7 @@ h5, h6
 
 h1,h2,h3,h4,h5,h6
   line-height: $font-leading-basic
+  font-weight: normal !important
 
 p
   margin-bottom: 1em
@@ -232,6 +233,8 @@ img
 // INDEX/ARCHIVE
 
 .grid-hover
+  box-sizing: border-box
+  padding: 3px
   img
     transition: opacity $basic-animation-speed
   &:hover
@@ -319,6 +322,8 @@ img
 
 .slick-slide
   background: $color-white-soft
+  box-sizing: border-box
+  padding: 0 $margin-basic
 
 .slider-img
   margin: 0 auto

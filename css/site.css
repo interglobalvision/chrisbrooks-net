@@ -876,6 +876,7 @@ h4,
 h5,
 h6 {
   line-height: 1.35em;
+  font-weight: normal !important;
 }
 p {
   margin-bottom: 1em;
@@ -994,6 +995,10 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
+.grid-hover {
+  box-sizing: border-box;
+  padding: 3px;
+}
 .grid-hover img {
   -webkit-transition: opacity 0.3s;
           transition: opacity 0.3s;
@@ -1086,6 +1091,8 @@ img {
 }
 .slick-slide {
   background: #fdfdfd;
+  box-sizing: border-box;
+  padding: 0 32px;
 }
 .slider-img {
   margin: 0 auto;

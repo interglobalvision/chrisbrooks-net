@@ -219,7 +219,7 @@ var Slick = {
       $('.js-slick-container').slick('slickGoTo',initSlide);
     }
 
-    $('.js-slick-item').on('click', function() {
+    $('.js-next-slide').on('click', function() {
       $('.js-slick-container').slick('slickNext');
     });
 
