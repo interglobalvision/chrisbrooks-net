@@ -1,5 +1,5 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
-/* global $, jQuery, document, Modernizr */
+/* global $, jQuery, document, Modernizr, History */
 
 function l(data) {
   'use strict';
@@ -113,7 +113,7 @@ var Spreads = {
 
       var $this = $(this),
         imageWrapHeight = $this.height(),
-        imageMaxHeight,
+        imageMaxHeight = 0,
         position = $this.position(),
         top = position.top,
         scale = ($this.attr('data-scale')*0.01),
@@ -128,6 +128,7 @@ var Spreads = {
       }
 
       imageWrapHeight = $this.height();
+      // why is this set again in the same way?
 
       if (scale > 0) {
         if (scale > 1) {
@@ -142,7 +143,7 @@ var Spreads = {
         imageMaxHeight = 60;
       }
 
-      $this.find('img.spread-image').css( 'max-height', imageMaxHeight );
+      $this.find('.spread-image').css( 'max-height', imageMaxHeight );
 
     });
   },
