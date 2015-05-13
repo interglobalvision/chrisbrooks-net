@@ -23,7 +23,7 @@ var retina = Modernizr.highresdisplay,
   windowHeight = $(window).height(),
   windowWidth = $(window).width(),
 
-  captionHeight = $('#single-slider-text').outerHeight(),
+  captionHeight = $('.single-slider-text').outerHeight(),
 
   caption,
   activeIndex,
