@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'ac_pro';
+  src: url("fonts/acpro-regular-webfont.eot");
+  src: url("fonts/acpro-regular-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/acpro-regular-webfont.woff2") format('woff2'), url("fonts/acpro-regular-webfont.woff") format('woff'), url("fonts/acpro-regular-webfont.ttf") format('truetype'), url("fonts/acpro-regular-webfont.svg#ac_proregular") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ac_pro';
+  src: url("fonts/acpro-regularitalic-webfont.eot");
+  src: url("fonts/acpro-regularitalic-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/acpro-regularitalic-webfont.woff2") format('woff2'), url("fonts/acpro-regularitalic-webfont.woff") format('woff'), url("fonts/acpro-regularitalic-webfont.ttf") format('truetype'), url("fonts/acpro-regularitalic-webfont.svg#ac_italicregular_italic") format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
 /* sanitize.css | CC0 Public Domain | github.com/jonathantneal/sanitize.css */
 :root {
   -ms-overflow-style: -ms-autohiding-scrollbar;
