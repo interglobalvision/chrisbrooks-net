@@ -1118,6 +1118,7 @@ img {
 }
 .caption-main {
   margin: 0 8px;
+  vertical-align: baseline;
 }
 .page-copy p {
   text-indent: 80px;
