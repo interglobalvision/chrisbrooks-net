@@ -854,6 +854,9 @@ body {
   font-size: 16px;
   line-height: 1.35em;
   letter-spacing: 0.001em;
+  text-rendering: geometricPrecision;
+  font-smooth: always;
+  font-smoothing: subpixel-antialiased;
 }
 h1 {
   font-size: 40px;

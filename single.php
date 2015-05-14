@@ -49,10 +49,10 @@ if( have_posts() ) {
               <div class="u-holder">
                 <div class="u-held">
                   <a <?php
-              if ($index === $length[0]) {
+              if ($length[0] == 1 || $index === $length[0]) {
                 echo 'href="' . $nextLink . '"';
               } else {
-                echo 'class="js-next-slide"';
+                echo 'class="js-next-slide u-pointer"';
               }
 ?>>
                     <img class="slider-img" data-basic="<?php echo $img[0]; ?>" data-large="<?php echo $imgLarge[0]; ?>" data-largest="<?php echo $imgLargest[0]; ?>" />
