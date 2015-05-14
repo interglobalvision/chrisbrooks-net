@@ -21,7 +21,7 @@ if( have_posts() ) {
 ?>
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
-      <a href="<?php the_permalink(); ?>">
+      <a href="<?php the_permalink(); ?>" class="grid-link">
         <img class="js-grid-img"
           data-basic="<?php echo $img[0]; ?>"
           data-large="<?php echo $imgLarge[0]; ?>"

@@ -66,7 +66,7 @@ if( $search->have_posts() ) {
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php
 echo get_the_permalink($parent[0]);
-?>">
+?>" class="grid-link">
         <?php the_post_thumbnail(); ?>
         <div class="grid-hover-holder">
           <div class="u-holder">

@@ -914,6 +914,9 @@ a:active:hover,
 a:visited:hover {
   color: #808080;
 }
+.grid-link:hover {
+  color: #0e0e0e;
+}
 html,
 body {
   height: 100%;
