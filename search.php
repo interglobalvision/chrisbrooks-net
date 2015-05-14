@@ -88,7 +88,7 @@ if (!empty($parent_meta['_igv_gallery_length'][0]) && $parent_meta['_igv_gallery
   }
 } else {
 ?>
-    <article class="u-alert"><?php _e('Sorry, no posts matched your criteria :{'); ?></article>
+    <article class="u-alert"><?php _e('Sorry, no posts matched your criteria'); ?></article>
 <?php
 } ?>
 

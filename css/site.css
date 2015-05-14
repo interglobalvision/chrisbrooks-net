@@ -995,6 +995,7 @@ img {
   border-bottom: 1px dotted #0e0e0e;
   outline: none;
   max-width: 90px;
+  margin-top: -2px;
 }
 #tags li {
   display: inline-block;

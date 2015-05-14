@@ -47,7 +47,7 @@ if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] >
 } else {
 ?>
     <div class="container">
-      <article class="col col12 u-alert"><?php _e('Sorry, no posts matched your criteria :{'); ?></article>
+      <article class="col col12 u-alert"><?php _e('Sorry, no posts matched your criteria'); ?></article>
     </div>
 <?php
 } ?>
