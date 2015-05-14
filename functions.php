@@ -276,9 +276,9 @@ function set_gallery_index( $post_id ) {
 
 // SAVE TAGS FOR PHOTOGRAPHS ON POST SAVE
 add_action( 'save_post', 'save_photograph_tags' );
-function save_photograph_tags( $post_id ) {
+function save_photograph_tags($post_id) {
 
-	if ( !wp_is_post_revision( $post_id ) && get_post_type($post_id) === 'photograph') {
+	if ( !wp_is_post_revision($post_id) && get_post_type($post_id) === 'photograph' && empty(get_the_tags($post_id))) {
     $image = get_attached_file(get_post_thumbnail_id( $post_id ));
     $tags = igv_read_image_keywords($image);
 
