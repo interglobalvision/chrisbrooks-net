@@ -202,6 +202,22 @@ function igv_cmb_metaboxes() {
     ) );
 */
 
+  $gallery = new_cmb2_box( array(
+      'id'            => $prefix . 'page_metabox',
+      'title'         => __( 'Page data', 'cmb2' ),
+      'object_types'  => array( 'page', ), // Post type
+      'context'       => 'normal',
+      'priority'      => 'high',
+      'show_names'    => true, // Show field names on the left
+    ) );
+
+  $gallery->add_field( array(
+    'name'    => __( '2nd column', 'cmb2' ),
+    'desc'    => __( 'Text in the second column', 'cmb2' ),
+    'id'      => $prefix . 'extra_copy',
+    'type'    => 'wysiwyg'
+    ) );
+
 }
 
 ?>

@@ -28,9 +28,14 @@ if( have_posts() ) {
           data-largest="<?php echo $imgLargest[0]; ?>" />
         <div class="grid-hover-holder">
           <div class="u-holder">
-            <div class="u-held font-caption">
+            <div class="u-held">
               <span>fig. <?php echo $meta['_igv_fig'][0]; ?></span>
-              <h2><?php the_title(); ?></h2>
+              <h2 class="font-italic"><?php the_title(); ?></h2>
+<?php
+if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] > 1) {
+  echo 'series of ' . $meta['_igv_gallery_length'][0] . ' images';
+}
+?>
             </div>
           </div>
         </div>

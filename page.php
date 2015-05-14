@@ -8,23 +8,23 @@ get_header();
 
 
 <?php
-if( have_posts() ) {
-  while( have_posts() ) {
-    the_post();
+if (!is_page('Search')) {
+  if( have_posts() ) {
+    while( have_posts() ) {
+      the_post();
+        $meta = get_post_meta($post->ID);
 ?>
 
   <article id="page" <?php post_class('container'); ?>>
     <div class="row">
-      <div class="col col2">
-        <?php the_post_thumbnail(); ?>
+      <div class="col col6 page-copy">
+        <?php the_content(); ?>
       </div>
-
-      <div class="col col8">
+      <div class="col col1">&nbsp;</div>
+      <div class="col col5">
         <?php
-          if (!is_page('Search')) {
-        ?>
-        <h4><?php the_title(); ?></h4>
-        <?php the_content();
+          if (!empty($meta['_igv_extra_copy'][0])) {
+            echo wpautop($meta['_igv_extra_copy'][0]);
           }
         ?>
       </div>
@@ -32,14 +32,16 @@ if( have_posts() ) {
   </article>
 
 <?php
-  }
-} else {
+    }
+  } else {
 ?>
     <div class="container">
       <article class="col col12 u-alert"><?php _e('Sorry, no posts matched your criteria'); ?></article>
     </div>
 <?php
-} ?>
+  }
+}
+?>
 
   <?php get_template_part('partials/pagination'); ?>
 

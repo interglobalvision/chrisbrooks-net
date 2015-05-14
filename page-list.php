@@ -40,6 +40,8 @@ if (!empty($meta['_igv_year'][0])) {
 echo '</h4>';
 if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] > 1) {
   echo '<div class="list-series-count">series of ' . $meta['_igv_gallery_length'][0] . ' images</div>';
+} else {
+  echo '<div class="list-series-count">&nbsp;</div>';
 }
 ?>
       </a>

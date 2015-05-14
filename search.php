@@ -70,9 +70,14 @@ echo get_the_permalink($parent[0]);
         <?php the_post_thumbnail(); ?>
         <div class="grid-hover-holder">
           <div class="u-holder">
-            <div class="u-held font-caption">
+            <div class="u-held">
               <span>fig. <?php echo $parent_meta['_igv_fig'][0]; ?></span>
-              <?php the_title(); ?>
+              <h2 class="font-italic"><?php the_title(); ?></h2>
+<?php
+if (!empty($parent_meta['_igv_gallery_length'][0]) && $parent_meta['_igv_gallery_length'][0] > 1) {
+  echo 'series of ' . $parent_meta['_igv_gallery_length'][0] . ' images';
+}
+?>
             </div>
           </div>
         </div>

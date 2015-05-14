@@ -63,21 +63,24 @@ if( have_posts() ) {
                         echo 'fig. ' . $fig;
                       }
 
+                      echo '<span class="caption-main">';
+
                       if ($length[0] > 1 && ! empty($title)) {
-                        echo ', ' . $title;
+                        echo $title . ', ';
                       }
 
                       if (!empty($photo_title)) {
-                        echo ', <em>' . $photo_title . '</em>';
+                        echo '<em>' . $photo_title . '</em>';
                       }
 
                       if (!empty($photo_caption)) {
                         echo ', <em>' . $photo_caption . '</em>';
                       }
 
+                      echo '</span>';
+
                       if ($length[0] > 1) {
-                        echo ', ' . $index . ' of ' . $length[0];
-                        echo ', </span><span class="slick-prev" class="u-pointer">Prev</span><span> / </span><span class="slick-next" class="u-pointer">Next';
+                        echo '(' . $index . ' of ' . $length[0] . ')';
                       } ?>
                   </div>
                 </div>

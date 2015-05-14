@@ -179,13 +179,13 @@ img
 // HEADER
 
 #header
-  padding-top: $margin-basic
-  margin-bottom: $margin-basic
+  padding-top: $margin-small
+  margin-bottom: $margin-large
 
 #menu
   li
     display: inline-block
-    margin-left: 0.5em
+    margin-left: 0.2em
 
 
 // HOME
@@ -213,19 +213,18 @@ img
 .spread-image-caption
   display: block
   padding-top: 0.5em
+  padding-left: $margin-tiny
 
 
 // SEARCH
 
-#search-header
-  margin-bottom: $margin-large
+#tags-header
+  margin-top: $margin-tiny
 
 #search-input
   border-bottom: 1px dotted $color-black-soft
   outline: none
-
-#tags-header
-  margin-top: $margin-basic
+  max-width: 90px
 
 #tags
   li
@@ -288,6 +287,7 @@ img
 
 .list-series-count
   margin-left: $margin-basic + $margin-small + $margin-tiny
+  color: $color-gray
 
 
 // SINGLE
@@ -340,6 +340,15 @@ img
   display: block
   width: 60%
   margin: 0 auto
+
+.caption-main
+  margin: 0 $margin-tiny
+
+// PAGE
+
+.page-copy
+  p
+    text-indent: $margin-large
 
 // MEDIA QUERIES
 

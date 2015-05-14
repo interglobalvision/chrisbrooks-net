@@ -49,61 +49,67 @@
 <header id="header">
   <div id="header-container" class="container">
     <div class="row">
-      <div class="col col6">
+      <div class="col col1">&nbsp;</div>
+      <div class="col col5">
         <a href="<?php echo home_url(); ?>">chris brooks</a>
       </div>
-      <div class="col col6 u-align-right">
+      <div class="col col5 u-align-right">
         <ul id="menu" class="font-italic">
           <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
+          <li>&middot;</li>
           <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
+          <li>&middot;</li>
           <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
+          <li>&middot;</li>
+<?php
+  if (is_search() || is_tag() || is_page('Search')) {
+?>
+          <li>
+            <form role="search" method="get" id="search-form" action="<?php echo home_url( '/' ); ?>">
+              <input <?php
+                if (is_search()) {
+                  $search_term =  $_GET['s'];
+                  echo 'placeholder="' . $search_term . '"';
+                }
+              ?>type="search" id="search-input" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+            </form>
+          </li>
+<?php
+  } else {
+?>
           <li><a href="<?php echo home_url('search/'); ?>">search</a></li>
+<?php
+  }
+?>
         </ul>
       </div>
     </div>
-  </div>
 <?php
-if (is_search() || is_tag() || is_page('Search')) {
+  if (is_search() || is_tag() || is_page('Search')) {
 ?>
-<section id="search-header" class="container">
-  <div class="row">
+    <div id="tags-header" class="row">
+      <div class="col col6">&nbsp;</div>
+      <div class="col col5 u-align-right">
+        <ul id="tags" class="font-gray font-italic">
 <?php
-  if (is_search()) {
-    $search_term =  $_GET['s'];
+    $tags = get_tags();
+    $tags_length = count($tags);
+    $i = 1;
+    foreach ($tags as $tag) {
+      $url = get_tag_link($tag->term_id);
+      echo '<a href="' . $url . '"><li>' . $tag->name . '</li></a>';
+      if ($tags_length !== $i) {
+        echo '<li>&middot;</li>';
+      }
+      $i++;
+    }
 ?>
-    <div class="col col12 u-align-center">
-      <form role="search" method="get" id="search-form" action="<?php echo home_url( '/' ); ?>">
-        <label id="search-label" class="font-gray">Results for: </label>
-        <input type="search" id="search-input" placeholder="<?php echo $search_term; ?>" name="s" title="<?php echo esc_attr_x( 'Results for:', 'label' ) ?>" />
-      </form>
-    </div>
-<?php
-  } else if (is_page('Search') || is_tag()) {
-?>
-    <div class="col col12 u-align-center">
-      <form role="search" method="get" id="search-form" action="<?php echo home_url( '/' ); ?>">
-        <label id="search-label" class="font-gray">Search for: </label>
-        <input type="search" id="search-input" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
-      </form>
+        </ul>
+      </div>
     </div>
 <?php
   }
 ?>
-    <div id="tags-header" class="col col12 u-align-center">
-      <ul id="tags" class="font-gray">
-<?php
-  $tags = get_tags();
-  foreach ($tags as $tag) {
-    $url = get_tag_link($tag->term_id);
-    echo '<a href="' . $url . '"><li>' . $tag->name . '</li></a>';
-  }
-?>
-      </ul>
-    </div>
   </div>
-</section>
-
-
-<?php } ?>
 </header>
 <?php } //end if ?>
