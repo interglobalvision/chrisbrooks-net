@@ -909,6 +909,11 @@ a:active,
 a:visited {
   color: inherit;
 }
+a:hover,
+a:active:hover,
+a:visited:hover {
+  color: #808080;
+}
 html,
 body {
   height: 100%;
