@@ -29,7 +29,7 @@
   <div id="loader">
     <div class="u-holder">
       <div class="u-held u-align-center">
-        loading<span id="loader-1">.</span><span id="loader-2">.</span><span id="loader-3">.</span>
+        loading<span id="loader-1" class="loader-dot">.</span><span id="loader-2" class="loader-dot">.</span><span id="loader-3" class="loader-dot">.</span>
       </div>
     </div>
   </div>

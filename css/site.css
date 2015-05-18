@@ -959,6 +959,9 @@ img {
           transition: opacity 0.1s;
   opacity: 0;
 }
+.loader-dot {
+  vertical-align: baseline;
+}
 #loader-1 {
   -webkit-animation: loader1 1.3s infinite;
           animation: loader1 1.3s infinite;
