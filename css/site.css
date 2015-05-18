@@ -1124,7 +1124,7 @@ img {
 .slick-slide {
   background: #fdfdfd;
   box-sizing: border-box;
-  padding: 0 32px;
+  padding: 0 48px;
 }
 .slick-slide .u-held {
   opacity: 0;
