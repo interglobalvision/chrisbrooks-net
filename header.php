@@ -55,11 +55,11 @@
       </div>
       <div class="col col5 u-align-right">
         <ul id="menu" class="font-italic">
-          <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
-          <li>&middot;</li>
           <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
           <li>&middot;</li>
           <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
+          <li>&middot;</li>
+          <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
           <li>&middot;</li>
 <?php
   if (is_search() || is_tag() || is_page('Search')) {
@@ -88,8 +88,8 @@
   if (is_search() || is_tag() || is_page('Search')) {
 ?>
     <div id="tags-header" class="row">
-      <div class="col col6">&nbsp;</div>
-      <div class="col col5 u-align-right">
+      <div class="col col1">&nbsp;</div>
+      <div class="col col10 u-align-right">
         <ul id="tags" class="font-gray font-italic">
 <?php
     $tags = get_tags();
