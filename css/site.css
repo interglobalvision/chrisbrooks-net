@@ -1026,6 +1026,10 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
+#posts {
+  box-sizing: border-box;
+  padding: 1px;
+}
 .grid-hover {
   box-sizing: border-box;
   padding: 1px;
@@ -1147,6 +1151,13 @@ img {
 }
 .page-copy p {
   text-indent: 80px;
+}
+@media screen and (min-width: 1920px) {
+  #list-of-posts {
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3;
+  }
 }
 @media screen and (max-width: 1272px) {
   .container {
