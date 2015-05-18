@@ -1026,9 +1026,8 @@ img {
   display: inline-block;
   margin-left: 0.5em;
 }
-#posts {
-  box-sizing: border-box;
-  padding: 1px;
+#main-content {
+  padding: 0 1px;
 }
 .grid-hover {
   box-sizing: border-box;
