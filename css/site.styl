@@ -280,7 +280,7 @@ img
 // LIST INDEX
 
 #list-of-posts
-  column-count: 2
+  column-count: 3
   column-gap: $gutter
   padding: 0 ($gutter / 2)
   box-sizing: border-box
@@ -355,7 +355,7 @@ img
   display: block
   width: 100%
   position: absolute
-  bottom: 0 
+  bottom: 0
   left: 0
 
 .caption-main
@@ -370,10 +370,10 @@ img
 
 // MEDIA QUERIES
 
-@media screen and (min-width: 1920px)
-
-  #list-of-posts
-    column-count: 3
+// @media screen and (min-width: 1920px)
+//
+//   #list-of-posts
+//     column-count: 3
 
 @media screen and (max-width: ($col * $cols)+($gutter * $cols))
 
@@ -392,6 +392,9 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  #list-of-posts
+    column-count: 2
 
 @media screen and (max-width: 1104px)
 
