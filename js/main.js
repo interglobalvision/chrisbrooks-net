@@ -248,7 +248,7 @@ var Slick = {
   resizeImages: function() {
     $('#single-slider').css( 'height', windowHeight );
     $('.js-slick-item img').css({
-      'max-height' : ( windowHeight - captionHeight - margin ),
+      'max-height' : ( windowHeight - captionHeight - (margin * 2) ),
     });
   }
 };
@@ -269,6 +269,7 @@ jQuery(document).ready(function () {
     $('.js-packery-container').imagesLoaded( function() {
       $('.js-packery-container').packery({
         itemSelector: '.js-packery-item',
+        columnWidth: '.js-packery-item',
         transitionDuration: '0s',
         percentPosition: true
       }).css({
