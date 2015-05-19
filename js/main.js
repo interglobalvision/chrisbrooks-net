@@ -249,7 +249,6 @@ var Slick = {
     $('#single-slider').css( 'height', windowHeight );
     $('.js-slick-item img').css({
       'max-height' : ( windowHeight - captionHeight - margin ),
-      'margin-top' : margin
     });
   }
 };
