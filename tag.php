@@ -15,6 +15,12 @@ if ( have_posts() ) {
     the_post();
     $parent = get_post_meta($post->ID, '_igv_parent');
     $parent_meta = get_post_meta( $parent[0] );
+
+    $img_id = get_post_thumbnail_id( $parent );
+    $img = wp_get_attachment_image_src($img_id, 'grid-basic');
+    $imgLarge = wp_get_attachment_image_src($img_id, 'grid-large');
+    $imgLarger = wp_get_attachment_image_src($img_id, 'grid-larger');
+    $imgLargest = wp_get_attachment_image_src($img_id, 'grid-largest');
 ?>
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
@@ -22,7 +28,11 @@ if ( have_posts() ) {
 $parent = get_post_meta($post->ID, '_igv_parent');
 echo get_the_permalink($parent[0]);
 ?>">
-        <?php the_post_thumbnail(); ?>
+        <img class="js-grid-img"
+          data-basic="<?php echo $img[0]; ?>"
+          data-large="<?php echo $imgLarge[0]; ?>"
+          data-larger="<?php echo $imgLarger[0]; ?>"
+          data-largest="<?php echo $imgLargest[0]; ?>" />
         <div class="grid-hover-holder">
           <div class="u-holder">
             <div class="u-held">

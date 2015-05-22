@@ -17,6 +17,7 @@ if( have_posts() ) {
     $img_id = get_post_thumbnail_id( $post->ID );
     $img = wp_get_attachment_image_src($img_id, 'grid-basic');
     $imgLarge = wp_get_attachment_image_src($img_id, 'grid-large');
+    $imgLarger = wp_get_attachment_image_src($img_id, 'grid-larger');
     $imgLargest = wp_get_attachment_image_src($img_id, 'grid-largest');
 ?>
 
@@ -25,6 +26,7 @@ if( have_posts() ) {
         <img class="js-grid-img"
           data-basic="<?php echo $img[0]; ?>"
           data-large="<?php echo $imgLarge[0]; ?>"
+          data-larger="<?php echo $imgLarger[0]; ?>"
           data-largest="<?php echo $imgLargest[0]; ?>" />
         <div class="grid-hover-holder">
           <div class="u-holder">

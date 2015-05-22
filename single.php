@@ -40,6 +40,7 @@ if( have_posts() ) {
 
             $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
             $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
+            $imgLarger = wp_get_attachment_image_src($img_id, 'gallery-larger');
             $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
 
             $photo_title = $post->post_title;
@@ -56,7 +57,11 @@ if( have_posts() ) {
                 echo 'class="js-next-slide u-pointer"';
               }
 ?>>
-                    <img class="slider-img" data-basic="<?php echo $img[0]; ?>" data-large="<?php echo $imgLarge[0]; ?>" data-largest="<?php echo $imgLargest[0]; ?>" />
+                    <img class="slider-img"
+                      data-basic="<?php echo $img[0]; ?>"
+                      data-large="<?php echo $imgLarge[0]; ?>"
+                      data-larger="<?php echo $imgLarger[0]; ?>"
+                      data-largest="<?php echo $imgLargest[0]; ?>" />
                   </a>
                   <div class="single-slider-text font-caption">
                     <?php

@@ -13,8 +13,9 @@ function getRandomInt(min, max) {
 // VARS
 
 var retina = Modernizr.highresdisplay,
-  largeImageThreshold = 800,
-  largestImageThreshold = 1400,
+  largeImageThreshold = 1100,
+  largerImageThreshold = 1800,
+  largestImageThreshold = 2200,
 
   noSpreadLayoutThreshold = 600,
 
@@ -46,16 +47,18 @@ function lazyLoadImages(selector) {
   $(selector).each(function() {
     var $this = $(this);
     var data = $this.data();
-    var windowWidth = $(window).width();
 
     if (retina) {
-      if (windowWidth > (largeImageThreshold*1.5)) {
+      if (windowWidth > largerImageThreshold) {
         $this.attr('src', data.largest);
       } else {
         $this.attr('src', data.large);
       }
+
     } else if (windowWidth > largestImageThreshold) {
       $this.attr('src', data.largest);
+    } else if (windowWidth > largerImageThreshold) {
+      $this.attr('src', data.larger);
     } else if (windowWidth > largeImageThreshold) {
       $this.attr('src', data.large);
     } else {
