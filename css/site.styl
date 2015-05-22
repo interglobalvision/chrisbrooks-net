@@ -235,7 +235,7 @@ img
   border-bottom: 1px dotted $color-black-soft
   outline: none
   max-width: 90px
-  margin-top: -2px
+  margin-top: -4px
 
 #tags
   li
@@ -366,7 +366,7 @@ img
 
 .page-copy
   p
-    text-indent: $margin-large
+    text-indent: ( $col + $gutter )
 
 // MEDIA QUERIES
 
@@ -396,6 +396,10 @@ img
   #list-of-posts
     column-count: 2
 
+  .page-copy
+    p
+      text-indent: ( $col + $gutter )
+
 @media screen and (max-width: 1104px)
 
   $col = 64px
@@ -413,6 +417,10 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  .page-copy
+    p
+      text-indent: ( $col + $gutter )
 
 @media screen and (max-width: 912px)
 
@@ -432,6 +440,11 @@ img
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
 
+  .page-copy
+    p
+      text-indent: ( $col + $gutter )
+
+
 @media screen and (max-width: 708px)
 
   $col = 19px
@@ -449,6 +462,10 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  .page-copy
+    p
+      text-indent: ( $col + $gutter )
 
   .spread-image-wrapper
     max-width: 40%
@@ -482,3 +499,7 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  .page-copy
+    p
+      text-indent: ( $col + $gutter )
