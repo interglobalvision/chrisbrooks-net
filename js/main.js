@@ -290,6 +290,8 @@ jQuery(document).ready(function () {
         'opacity': 1
       });
 */
+      l('loaded');
+
       $('#loader').css('opacity', 0);
       lazyLoadImages('.js-grid-img-deferred');
     });

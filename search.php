@@ -57,12 +57,14 @@ if( $search_default->have_posts() || $search_tag->have_posts() ) {
 
 <?php
 if( $search->have_posts() ) {
+  $i = 1;
+  $firstLoadLimit = 15;
   while( $search->have_posts() ) {
     $search->the_post();
       $parent = get_post_meta($post->ID, '_igv_parent');
       $parent_meta = get_post_meta( $parent[0] );
 
-      $img_id = get_post_thumbnail_id( $parent );
+      $img_id = get_post_thumbnail_id( $parent[0] );
       $img = wp_get_attachment_image_src($img_id, 'grid-basic');
       $imgLarge = wp_get_attachment_image_src($img_id, 'grid-large');
       $imgLarger = wp_get_attachment_image_src($img_id, 'grid-larger');
@@ -73,7 +75,14 @@ if( $search->have_posts() ) {
       <a href="<?php
 echo get_the_permalink($parent[0]);
 ?>" class="grid-link">
-        <img class="js-grid-img"
+        <img
+<?php
+    if ($i > $firstLoadLimit) {
+      echo 'class="js-grid-img-deferred"';
+    } else {
+      echo 'class="js-grid-img"';
+    }
+?>
           data-basic="<?php echo $img[0]; ?>"
           data-large="<?php echo $imgLarge[0]; ?>"
           data-larger="<?php echo $imgLarger[0]; ?>"
@@ -95,6 +104,7 @@ if (!empty($parent_meta['_igv_gallery_length'][0]) && $parent_meta['_igv_gallery
     </article>
 
 <?php
+  $i++;
   }
 } else {
 ?>
