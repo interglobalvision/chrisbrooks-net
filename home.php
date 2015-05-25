@@ -20,7 +20,7 @@ if ($spreads) {
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
     foreach ($spreadImages[0] as $image) {
       $img_id = $image['image_id'];
-      $img_default = wp_get_attachment_image_src($img_id, 'slide-normal');
+      $img_default = wp_get_attachment_image_src($img_id, 'gallery-large');
 
       $img_attachment = get_post($img_id);
 

@@ -11,6 +11,8 @@ get_header();
 
 <?php
 if( have_posts() ) {
+  $i = 1;
+  $firstLoadLimit = 15;
   while( have_posts() ) {
     the_post();
     $meta = get_post_meta( $post->ID );
@@ -23,7 +25,14 @@ if( have_posts() ) {
 
     <article <?php post_class('percent-col into-5 grid-hover js-packery-item'); ?> id="post-<?php the_ID(); ?>">
       <a href="<?php the_permalink(); ?>" class="grid-link">
-        <img class="js-grid-img"
+        <img
+<?php
+    if ($i > $firstLoadLimit) {
+      echo 'class="js-grid-img-deferred"';
+    } else {
+      echo 'class="js-grid-img"';
+    }
+?>
           data-basic="<?php echo $img[0]; ?>"
           data-large="<?php echo $imgLarge[0]; ?>"
           data-larger="<?php echo $imgLarger[0]; ?>"
@@ -45,6 +54,7 @@ if (!empty($meta['_igv_gallery_length'][0]) && $meta['_igv_gallery_length'][0] >
     </article>
 
 <?php
+  $i++;
   }
 } else {
 ?>

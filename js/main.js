@@ -64,6 +64,15 @@ function lazyLoadImages(selector) {
     } else {
       $this.attr('src', data.basic);
     }
+
+    $this.imagesLoaded(function() {
+      this.images[0].img.className += ' img-loaded';
+
+      if ( $('.js-packery-container').length ) {
+        $('.js-packery-container').packery();
+      }
+    });
+
   });
 }
 
@@ -268,18 +277,21 @@ jQuery(document).ready(function () {
   if ( $('.js-packery-container').length ) {
 
     $('#loader').css('opacity', 1);
+    $('.js-packery-container').packery({
+      itemSelector: '.js-packery-item',
+      columnWidth: '.js-packery-item',
+      transitionDuration: '0s',
+      percentPosition: true
+    });
 
     $('.js-packery-container').imagesLoaded( function() {
-      $('.js-packery-container').packery({
-        itemSelector: '.js-packery-item',
-        columnWidth: '.js-packery-item',
-        transitionDuration: '0s',
-        percentPosition: true
-      }).css({
+/*
+      $('.js-packery-container').packery().css({
         'opacity': 1
       });
+*/
       $('#loader').css('opacity', 0);
-
+      lazyLoadImages('.js-grid-img-deferred');
     });
   }
 
