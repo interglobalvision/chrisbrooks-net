@@ -1314,6 +1314,7 @@ input:-moz-placeholder {
   #page .col {
     float: none;
     width: 100%;
+    max-width: 596px;
   }
   #page-extra-copy {
     margin-left: 76px;
