@@ -1174,7 +1174,7 @@ input:-moz-placeholder {
   margin: 0 8px;
   vertical-align: baseline;
 }
-.page-copy p {
+#page-main-copy p {
   text-indent: 106px;
 }
 @media screen and (max-width: 1272px) {
@@ -1238,7 +1238,7 @@ input:-moz-placeholder {
     top: 14px;
     right: 14px;
   }
-  .page-copy p {
+  #page-main-copy p {
     text-indent: 92px;
   }
   #list-of-posts {
@@ -1308,8 +1308,15 @@ input:-moz-placeholder {
     top: 12px;
     right: 12px;
   }
-  .page-copy p {
+  #page-main-copy p {
     text-indent: 76px;
+  }
+  #page .col {
+    float: none;
+    width: 100%;
+  }
+  #page-extra-copy {
+    margin-left: 76px;
   }
 }
 @media screen and (max-width: 912px) {
@@ -1376,8 +1383,11 @@ input:-moz-placeholder {
     top: 12px;
     right: 12px;
   }
-  .page-copy p {
+  #page-main-copy p {
     text-indent: 59px;
+  }
+  #page-extra-copy {
+    margin-left: 59px;
   }
 }
 @media screen and (max-width: 708px) {
@@ -1441,8 +1451,11 @@ input:-moz-placeholder {
     top: 10px;
     right: 10px;
   }
-  .page-copy p {
+  #page-main-copy p {
     text-indent: 29px;
+  }
+  #page-extra-copy {
+    margin-left: 29px;
   }
   #menu-col {
     width: 193px;
@@ -1525,8 +1538,11 @@ input:-moz-placeholder {
     top: 8px;
     right: 8px;
   }
-  .page-copy p {
+  #page-main-copy p {
     text-indent: 24px;
+  }
+  #page-extra-copy {
+    margin-left: 24px;
   }
   #menu-col {
     width: 160px;

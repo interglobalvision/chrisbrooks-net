@@ -385,7 +385,7 @@ input:-moz-placeholder
 
 // PAGE
 
-.page-copy
+#page-main-copy
   p
     text-indent: ( $col + $gutter )
 
@@ -432,7 +432,7 @@ input:-moz-placeholder
     top: $margin-small
     right: $margin-small
 
-  .page-copy
+  #page-main-copy
     p
       text-indent: ( $col + $gutter )
 
@@ -477,9 +477,20 @@ input:-moz-placeholder
     top: $margin-small
     right: $margin-small
 
-  .page-copy
+  #page-main-copy
     p
       text-indent: ( $col + $gutter )
+
+  // PAGES
+
+  #page
+    .col
+      float: none
+      width: 100%
+
+  #page-extra-copy
+    margin-left: ( $col + $gutter )
+
 
 @media screen and (max-width: 912px)
 
@@ -520,10 +531,12 @@ input:-moz-placeholder
     top: $margin-small
     right: $margin-small
 
-  .page-copy
+  #page-main-copy
     p
       text-indent: ( $col + $gutter )
 
+  #page-extra-copy
+    margin-left: ( $col + $gutter )
 
 @media screen and (max-width: 708px)
 
@@ -561,9 +574,12 @@ input:-moz-placeholder
     top: $margin-small
     right: $margin-small
 
-  .page-copy
+  #page-main-copy
     p
       text-indent: ( $col + $gutter )
+
+  #page-extra-copy
+    margin-left: ( $col + $gutter )
 
   // MAIN
 
@@ -626,9 +642,12 @@ input:-moz-placeholder
     top: $margin-small
     right: $margin-small
 
-  .page-copy
+  #page-main-copy
     p
       text-indent: ( $col + $gutter )
+
+  #page-extra-copy
+    margin-left: ( $col + $gutter )
 
   // MAIN
 

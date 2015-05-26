@@ -17,11 +17,11 @@ if (!is_page('Search')) {
 
   <article id="page" <?php post_class('container'); ?>>
     <div class="row">
-      <div class="col col6 page-copy">
+      <div id="page-main-copy" class="col col6 page-copy">
         <?php the_content(); ?>
       </div>
       <div class="col col1">&nbsp;</div>
-      <div class="col col5">
+      <div id="page-extra-copy" class="col col5">
         <?php
           if (!empty($meta['_igv_extra_copy'][0])) {
             echo wpautop($meta['_igv_extra_copy'][0]);
