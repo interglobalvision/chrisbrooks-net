@@ -14,8 +14,8 @@ function getRandomInt(min, max) {
 
 var retina = Modernizr.highresdisplay,
   largeImageThreshold = 1100,
-  largerImageThreshold = 1800,
-  largestImageThreshold = 2200,
+  largerImageThreshold = 1600,
+  largestImageThreshold = 2000,
 
   noSpreadLayoutThreshold = 600,
 
