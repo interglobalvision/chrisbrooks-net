@@ -80,7 +80,7 @@ if( have_posts() ) {
                       }
 
                       if (!empty($photo_caption)) {
-                        echo ', <em>' . $photo_caption . '</em>';
+                        echo ', ' . $photo_caption;
                       }
 
                       echo '</span>';
