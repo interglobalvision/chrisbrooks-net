@@ -233,14 +233,16 @@ img
 
 // SEARCH
 
-#tags-header
-  margin-top: $margin-tiny
+#search-header, #tags-header
+  margin-top: $margin-small
 
 #search-input
   border-bottom: 1px dotted $color-black-soft
   outline: none
-  max-width: 90px
-  margin-top: -4px
+  max-width: 300px
+  margin-top: -10px
+  margin-left: $margin-tiny
+  vertical-align: baseline
 
 #tags
   li
@@ -444,6 +446,9 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  .into-5
+    width: ( 100% / 3 )
 
   .page-copy
     p

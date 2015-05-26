@@ -1016,14 +1016,17 @@ img {
   padding-top: 0.5em;
   padding-left: 8px;
 }
+#search-header,
 #tags-header {
-  margin-top: 8px;
+  margin-top: 16px;
 }
 #search-input {
   border-bottom: 1px dotted #0e0e0e;
   outline: none;
-  max-width: 90px;
-  margin-top: -4px;
+  max-width: 300px;
+  margin-top: -10px;
+  margin-left: 8px;
+  vertical-align: baseline;
 }
 #tags li {
   display: inline-block;
@@ -1318,6 +1321,9 @@ img {
   }
   .col12 {
     width: 696px;
+  }
+  .into-5 {
+    width: 33.333333333333336%;
   }
   .page-copy p {
     text-indent: 59px;
