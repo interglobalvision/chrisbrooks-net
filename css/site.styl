@@ -123,15 +123,14 @@ img
   max-width: 100%
   height: auto
 
-// .js-packery-container
-//   opacity: 0
-//   transition: opacity $basic-animation-speed
-
 .js-grid-img
   opacity: 0
   transition: opacity $basic-animation-speed
   &.img-loaded
     opacity: 1
+
+.u-alert
+  text-align: center
 
 // LOADER
 
@@ -242,6 +241,22 @@ img
   margin-top: -10px
   margin-left: $margin-tiny
   vertical-align: baseline
+
+::-webkit-input-placeholder
+  line-height: normal
+  font-weight: normal
+
+::-moz-placeholder
+  line-height: normal
+  font-weight: normal
+
+:-ms-input-placeholder
+  line-height: normal
+  font-weight: normal
+
+input:-moz-placeholder
+  line-height: normal
+  font-weight: normal
 
 #tags
   li
@@ -399,12 +414,32 @@ img
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
 
-  #list-of-posts
-    column-count: 2
+  $margin-small = ($gutter)
+  $margin-basic = ($gutter*2)
+  $margin-large = ($gutter*5)
+  $margin-tiny = ($gutter/2)
+
+  // RELATIVE RESIZES
+
+  #header
+    padding-top: $margin-small
+    margin-bottom: $margin-large
+
+  .slick-slide
+    padding: 0 ($margin-basic + $margin-small)
+
+  #single-close
+    top: $margin-small
+    right: $margin-small
 
   .page-copy
     p
       text-indent: ( $col + $gutter )
+
+  // LIST OF POSTS
+
+  #list-of-posts
+    column-count: 2
 
 @media screen and (max-width: 1104px)
 
@@ -423,6 +458,24 @@ img
   for col in 1..$cols
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
+
+  $margin-small = ($gutter)
+  $margin-basic = ($gutter*2)
+  $margin-large = ($gutter*5)
+  $margin-tiny = ($gutter/2)
+
+  // RELATIVE RESIZES
+
+  #header
+    padding-top: $margin-small
+    margin-bottom: $margin-large
+
+  .slick-slide
+    padding: 0 ($margin-basic + $margin-small)
+
+  #single-close
+    top: $margin-small
+    right: $margin-small
 
   .page-copy
     p
@@ -446,8 +499,26 @@ img
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
 
+  $margin-small = ($gutter)
+  $margin-basic = ($gutter*2)
+  $margin-large = ($gutter*5)
+  $margin-tiny = ($gutter/2)
+
   .into-5
     width: ( 100% / 3 )
+
+  // RELATIVE RESIZES
+
+  #header
+    padding-top: $margin-small
+    margin-bottom: $margin-large
+
+  .slick-slide
+    padding: 0 ($margin-basic + $margin-small)
+
+   #single-close
+    top: $margin-small
+    right: $margin-small
 
   .page-copy
     p
@@ -472,21 +543,49 @@ img
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
 
+  $margin-small = ($gutter)
+  $margin-basic = ($gutter*2)
+  $margin-large = ($gutter*5)
+  $margin-tiny = ($gutter/2)
+
+  // RELATIVE RESIZES
+
+  #header
+    padding-top: $margin-small
+    margin-bottom: $margin-large
+
+  .slick-slide
+    padding: 0 ($margin-basic + $margin-small)
+
+  #single-close
+    top: $margin-small
+    right: $margin-small
+
   .page-copy
     p
       text-indent: ( $col + $gutter )
 
+  // MAIN
+
+  #menu-col
+    width: ( 7 * $col ) + ( 6 * $gutter )
+
+  // HOME
+
   .spread-image-wrapper
     max-width: 40%
 
-  #single-close
-    top: 0
+  // LIST OF POSTS
 
-
+  #list-of-posts
+    column-count: 1
 
 @media screen and (max-width: 600px)
 
+  // HOME
+
   .spread-image-wrapper
+    text-align: center
     position: initial
     max-width: 90% !important
     margin: 0 auto
@@ -509,6 +608,29 @@ img
     .col{col}
       width: ( col * $col ) + ( ( col - 1 ) * $gutter )
 
+  $margin-small = ($gutter)
+  $margin-basic = ($gutter*2)
+  $margin-large = ($gutter*5)
+  $margin-tiny = ($gutter/2)
+
+  // RELATIVE RESIZES
+
+  #header
+    padding-top: $margin-small
+    margin-bottom: $margin-large
+
+  .slick-slide
+    padding: 0 ($margin-basic + $margin-small)
+
+  #single-close
+    top: $margin-small
+    right: $margin-small
+
   .page-copy
     p
       text-indent: ( $col + $gutter )
+
+  // MAIN
+
+  #menu-col
+    width: ( 7 * $col ) + ( 6 * $gutter )

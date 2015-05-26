@@ -47,10 +47,10 @@
   <div id="header-container" class="container">
     <div class="row">
       <div class="col col1">&nbsp;</div>
-      <div class="col col5">
+      <div class="col col4">
         <a href="<?php echo home_url(); ?>">chris brooks</a>
       </div>
-      <div class="col col5 u-align-right">
+      <div id="menu-col" class="col col6 u-align-right">
         <ul id="menu" class="font-italic">
           <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
           <li>&middot;</li>
