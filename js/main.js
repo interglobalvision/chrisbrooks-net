@@ -86,6 +86,9 @@ var Spreads = {
   containerMargin: 0,
   init: function() {
     var _this = this;
+
+    lazyLoadImages('.spread-image');
+
     _this.firstSpread();
     _this.containerLayoutFix();
     _this.resizeImages();

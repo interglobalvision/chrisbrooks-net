@@ -20,7 +20,11 @@ if ($spreads) {
     $spreadImages = get_post_meta($post->ID, '_igv_spread_images');
     foreach ($spreadImages[0] as $image) {
       $img_id = $image['image_id'];
-      $img_default = wp_get_attachment_image_src($img_id, 'gallery-large');
+
+      $img = wp_get_attachment_image_src($img_id, 'gallery-basic');
+      $imgLarge = wp_get_attachment_image_src($img_id, 'gallery-large');
+      $imgLarger = wp_get_attachment_image_src($img_id, 'gallery-larger');
+      $imgLargest = wp_get_attachment_image_src($img_id, 'gallery-largest');
 
       $img_attachment = get_post($img_id);
 
@@ -48,7 +52,11 @@ if ($spreads) {
         echo 'max-width: ' . $image['maxwidth'] . '%;';
       }
 ?>">
-        <img class="spread-image" src="<?php echo $img_default[0]; ?>"/>
+        <img class="spread-image"
+          data-basic="<?php echo $img[0]; ?>"
+          data-large="<?php echo $imgLarge[0]; ?>"
+          data-larger="<?php echo $imgLarger[0]; ?>"
+          data-largest="<?php echo $imgLargest[0]; ?>" />
 <?php
   if (!empty($project_id)) {
 ?>
