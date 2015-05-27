@@ -303,18 +303,38 @@ function save_photograph_title( $post_id ) {
       $title = $attachment->post_title;
       $caption = $attachment->post_excerpt;
 
-      // Unhook this function so it doesn't loop infinitely
-      remove_action( 'save_post', 'save_photograph_title' );
+      if (empty(get_the_title($post_id)) {
 
-      // Set Title and content
-      wp_update_post( array(
-        'ID' => $post_id,
-        'post_title' =>  $title,
-        'post_content' => $caption
-      ) );
+        // Unhook this function so it doesn't loop infinitely
+        remove_action( 'save_post', 'save_photograph_title' );
 
-      // Re-hook the function
-      add_action( 'save_post', 'save_photograph_title' );
+        // Set Title and content
+        wp_update_post( array(
+          'ID' => $post_id,
+          'post_title' =>  $title
+        ) );
+
+        // Re-hook the function
+        add_action( 'save_post', 'save_photograph_title' );
+
+      }
+
+      if (empty(get_the_content($post_id)) {
+
+        // Unhook this function so it doesn't loop infinitely
+        remove_action( 'save_post', 'save_photograph_title' );
+
+        // Set Title and content
+        wp_update_post( array(
+          'ID' => $post_id,
+          'post_content' => $caption
+        ) );
+
+        // Re-hook the function
+        add_action( 'save_post', 'save_photograph_title' );
+
+      }
+
     }
   }
 
