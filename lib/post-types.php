@@ -133,12 +133,12 @@ function register_cpt_spread() {
         'menu_position' => 5,
 
         'show_in_nav_menus' => true,
-        'publicly_queryable' => true,
+        'publicly_queryable' => false,
         'exclude_from_search' => false,
-        'has_archive' => true,
+        'has_archive' => false,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => true,
+        'rewrite' => false,
         'capability_type' => 'post'
     );
 
