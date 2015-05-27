@@ -94,7 +94,6 @@ var Spreads = {
     _this.resizeImages();
 
     $('.home-spread').on('click', function(e) {
-      l(e);
       if (e.target.tagName !== 'A') {
         _this.nextSpread();
       }
@@ -288,12 +287,6 @@ jQuery(document).ready(function () {
     });
 
     $('.js-packery-container').imagesLoaded( function() {
-/*
-      $('.js-packery-container').packery().css({
-        'opacity': 1
-      });
-*/
-      l('loaded');
 
       $('#loader').css('opacity', 0);
       lazyLoadImages('.js-grid-img-deferred');
