@@ -302,6 +302,10 @@ jQuery(document).ready(function () {
 
   if ($('#single-slider').length) {
     $('#single-slider').css( 'height', windowHeight );
+    $('#loader').css('opacity', 1);
+    $('#single-slider').imagesLoaded( function() {
+      $('#loader').css('opacity', 0);
+    });
   }
 
   if ($('body').hasClass('home')) {
