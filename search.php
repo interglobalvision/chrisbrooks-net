@@ -64,7 +64,7 @@ if( $search->have_posts() ) {
       $parent = get_post_meta($post->ID, '_igv_parent');
       $parent_meta = get_post_meta( $parent[0] );
 
-      $img_id = get_post_thumbnail_id( $parent[0] );
+      $img_id = get_post_thumbnail_id( $post->ID );
       $img = wp_get_attachment_image_src($img_id, 'grid-basic');
       $imgLarge = wp_get_attachment_image_src($img_id, 'grid-large');
       $imgLarger = wp_get_attachment_image_src($img_id, 'grid-larger');
