@@ -124,14 +124,33 @@ function wpb_imagelink_setup() {
 add_action('admin_init', 'wpb_imagelink_setup', 10);
 
 // custom login logo
-/*
 function custom_login_logo() {
-  echo '<style type="text/css">h1 a { background-image:url(' . get_bloginfo( 'template_directory' ) . '/images/login-logo.png) !important; background-size:300px auto !important; width:300px !important; }</style>';
+  echo '<style type="text/css">h1 a { background-image:url(' . get_bloginfo( 'template_directory' ) . '/img/login-logo.png) !important; background-size:300px auto !important; width:300px !important; }</style>';
 }
 add_action( 'login_head', 'custom_login_logo' );
-*/
 
 // UTILITY FUNCTIONS
+
+function truncate_text($text) {
+
+  $length = 25;
+
+  if (strlen($text) <= $length) {
+      return $text;
+  }
+
+  //find last space within length
+  $last_space = strrpos(substr($text, 0, $length), ' ');
+  if($last_space !== false) {
+      $trimmed_text = substr($text, 0, $last_space);
+  } else {
+      $trimmed_text = substr($text, 0, $length);
+  }
+
+  $trimmed_text .= '...';
+
+  return $trimmed_text;
+  }
 
 // to replace file_get_contents
 function url_get_contents($Url) {
