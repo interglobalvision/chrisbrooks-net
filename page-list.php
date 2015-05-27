@@ -31,7 +31,7 @@ if (!empty($meta['_igv_fig'][0])) {
   echo '<span class="list-fig">fig.' . $meta['_igv_fig'][0] . '</span>';
 }
 echo '<span class="font-italic">';
-the_title();
+echo truncate_text(get_the_title());
 echo '</span>';
 if (!empty($meta['_igv_year'][0])) {
   echo ', ' . $meta['_igv_year'][0];
