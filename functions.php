@@ -303,7 +303,7 @@ function save_photograph_title( $post_id ) {
       $title = $attachment->post_title;
       $caption = $attachment->post_excerpt;
 
-      if (empty(get_the_title($post_id)) {
+      if (empty(get_the_title($post_id))) {
 
         // Unhook this function so it doesn't loop infinitely
         remove_action( 'save_post', 'save_photograph_title' );
@@ -319,7 +319,7 @@ function save_photograph_title( $post_id ) {
 
       }
 
-      if (empty(get_the_content($post_id)) {
+      if (empty(get_the_content($post_id))) {
 
         // Unhook this function so it doesn't loop infinitely
         remove_action( 'save_post', 'save_photograph_title' );
