@@ -32,8 +32,8 @@ if( function_exists( 'add_image_size' ) ) {
 
   add_image_size( 'gallery-basic', 800, 533, false );
   add_image_size( 'gallery-large', 1400, 933, false );
-  add_image_size( 'gallery-larger', 1700, 933, false );
-  add_image_size( 'gallery-largest', 2000, 1333, false );
+  add_image_size( 'gallery-larger', 1800, 933, false );
+  add_image_size( 'gallery-largest', 2200, 1333, false );
 
   add_image_size( 'grid-basic', 320, 9999, false );
   add_image_size( 'grid-large', 550, 9999, false );
