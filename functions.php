@@ -133,7 +133,7 @@ add_action( 'login_head', 'custom_login_logo' );
 
 function truncate_text($text) {
 
-  $length = 29;
+  $length = 34;
 
   if (strlen($text) <= $length) {
       return $text;
