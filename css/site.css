@@ -930,6 +930,9 @@ a:visited:hover {
 .grid-link:hover {
   color: #0e0e0e;
 }
+.menu-active {
+  color: #808080;
+}
 html,
 body {
   height: 100%;

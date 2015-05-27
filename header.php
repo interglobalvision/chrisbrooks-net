@@ -52,11 +52,23 @@
       </div>
       <div id="menu-col" class="col col6 u-align-right">
         <ul id="menu" class="font-italic">
-          <li><a href="<?php echo home_url('project/'); ?>">index</a></li>
+          <li <?php
+  if (is_search() || is_tag() || is_page('Search') || is_archive()) {
+    echo 'class="menu-active"';
+  }
+?>><a href="<?php echo home_url('project/'); ?>">index</a></li>
           <li>&middot;</li>
-          <li><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
+          <li <?php
+  if (is_page('list-of-works')) {
+    echo 'class="menu-active"';
+  }
+?>><a href="<?php echo home_url('list-of-works/'); ?>">list of works</a></li>
           <li>&middot;</li>
-          <li><a href="<?php echo home_url('about/'); ?>">about</a></li>
+          <li <?php
+  if (is_page('about')) {
+    echo 'class="menu-active"';
+  }
+?>><a href="<?php echo home_url('about/'); ?>">about</a></li>
         </ul>
       </div>
     </div>
