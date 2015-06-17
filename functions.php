@@ -6,11 +6,11 @@ function scripts_and_styles_method() {
   // library.js is to bundle plugins. my.js is your scripts. enqueue more files as needed
   $jslib = $templateuri."library.js";
   wp_enqueue_script( 'jslib', $jslib,'','',true);
-  $myscripts = $templateuri."main.js";
+  $myscripts = $templateuri."main.min.js";
   wp_enqueue_script( 'myscripts', $myscripts,'','',true);
 
   // enqueue stylesheet here. file does not exist until stylus file is processed
-  wp_enqueue_style( 'site', get_stylesheet_directory_uri() . '/css/site.css' );
+  wp_enqueue_style( 'site', get_stylesheet_directory_uri() . '/css/site.min.css' );
 
   // dashicons for admin
   if(is_admin()){
@@ -41,13 +41,6 @@ if( function_exists( 'add_image_size' ) ) {
   add_image_size( 'grid-largest', 1000, 9999, false );
 }
 
-// Register Nav Menus
-/*
-register_nav_menus( array(
-	'menu_location' => 'Location Name',
-) );
-*/
-
 get_template_part( 'lib/gallery' );
 get_template_part( 'lib/post-types' );
 get_template_part( 'lib/meta-boxes' );
@@ -66,6 +59,10 @@ function cmb_initialize_cmb_meta_boxes() {
     require_once 'lib/CMB2-plugins/cmb2-attached-posts/cmb2-attached-posts-field.php';
   }
 }
+
+// Remove WP Emoji
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
 
 // Disable that freaking admin bar
 add_filter('show_admin_bar', '__return_false');
@@ -125,7 +122,7 @@ add_action('admin_init', 'wpb_imagelink_setup', 10);
 
 // custom login logo
 function custom_login_logo() {
-  echo '<style type="text/css">h1 a { background-image:url(' . get_bloginfo( 'template_directory' ) . '/img/login-logo.png) !important; background-size:300px auto !important; width:300px !important; }</style>';
+  echo '<style type="text/css">h1 a { background-image:url(' . get_bloginfo( 'template_directory' ) . '/img/login-logo.png) !important; background-size:300px auto !important; background-position: center center !important; width:300px !important; }</style>';
 }
 add_action( 'login_head', 'custom_login_logo' );
 

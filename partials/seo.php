@@ -1,6 +1,5 @@
 <meta name="description" content="<?php bloginfo('description'); ?>">
 
-<meta name="twitter:site" value="@">
 <?php
 if( have_posts() ) {
   while( have_posts() ) {
