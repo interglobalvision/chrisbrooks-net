@@ -44,6 +44,8 @@ $(window).on('resize', function() {
   // LAZY IMAGES
 
 function lazyLoadImages(selector) {
+  var smallRetina = (largeImageThreshold / 2)
+
   $(selector).each(function() {
     var $this = $(this);
     var data = $this.data();
@@ -51,6 +53,8 @@ function lazyLoadImages(selector) {
     if (retina) {
       if (windowWidth > largerImageThreshold) {
         $this.attr('src', data.largest);
+      } if (windowWidth < smallRetina) {
+        $this.attr('src', data.basic);
       } else {
         $this.attr('src', data.large);
       }
