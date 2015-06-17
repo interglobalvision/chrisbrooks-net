@@ -85,8 +85,8 @@ if( have_posts() ) {
 
                       echo '</span>';
 
-                      if ($length[0] > 1) {
-                        echo '(' . $index . ' of ' . $length[0] . ')';
+                      if ($length > 1) {
+                        echo '(' . $index . ' of ' . $length . ')';
                       } ?>
                   </div>
                 </div>
