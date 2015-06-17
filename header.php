@@ -45,7 +45,7 @@
 <header id="header">
   <div id="header-container" class="container">
     <div class="row">
-      <div class="col col1">&nbsp;</div>
+      <div class="col col1 u-remove-mobile">&nbsp;</div>
       <div class="col col4">
         <a href="<?php echo home_url(); ?>">chris brooks</a>
       </div>

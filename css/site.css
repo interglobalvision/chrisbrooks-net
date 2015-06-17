@@ -1548,8 +1548,11 @@ input:-moz-placeholder {
   #page-extra-copy {
     margin-left: 24px;
   }
+  .u-remove-mobile {
+    display: none;
+  }
   #menu-col {
-    width: 160px;
+    width: 184px;
   }
 }
 @-webkit-keyframes loader1 {
