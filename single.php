@@ -25,12 +25,12 @@ if( have_posts() ) {
         <nav id="single-close" class="single-nav">
           <a href="<?php echo home_url('list-of-works/'); ?>">
             <span class="font-italic">list of works</span>
-            <?php /* echo url_get_contents(get_bloginfo('stylesheet_directory') . '/img/close.svg'); */ ?>
           </a>
         </nav>
         <div class="js-slick-container">
 <?php
         if ($images) {
+
           foreach($images as $image) {
             $post_id = $image;
             $post = get_post($post_id);
@@ -51,7 +51,7 @@ if( have_posts() ) {
               <div class="u-holder">
                 <div class="u-held">
                   <a <?php
-              if ($length[0] == 1 || $index === $length[0]) {
+              if ($length[0] === 1 || $index === $length) {
                 echo 'href="' . $nextLink . '"';
               } else {
                 echo 'class="js-next-slide u-pointer"';
