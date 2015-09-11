@@ -16,12 +16,13 @@ var retina = Modernizr.highresdisplay,
 
   margin = 35,
 
+  galleryAnimationLength = 500,
+
   windowHeight = $(window).height(),
   windowWidth = $(window).width(),
 
   captionHeight = $('.single-slider-text').outerHeight(),
 
-  activeId,
   initSlide,
   State = History.getState(),
   hashGalleryValue = parseInt(State.hash.substring(State.hash.indexOf('#') + 1));
@@ -203,9 +204,9 @@ var Spreads = {
 var Slick = {
   init: function() {
     var _this = this;
+
     $('.js-slick-container').on({
-      init: function(event, slick){
-        var currentSlideIndex = $('.slick-active').attr('data-slick-index');
+      init: function() {
 
         // set length for n of * in captions
         var slidesLength = $('.js-slick-item').length;
@@ -236,7 +237,7 @@ var Slick = {
     })
     .slick({
       fade: true,
-      speed: 500,
+      speed: galleryAnimationLength,
       prevArrow: '.slick-prev',
       nextArrow: '.slick-next',
     });
