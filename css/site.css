@@ -1123,7 +1123,8 @@ input:-moz-placeholder {
 }
 .single-nav {
   position: absolute;
-  z-index: 99999;
+  z-index: 9999;
+  box-sizing: border-box;
 }
 .single-nav svg {
   width: 16px;
@@ -1131,14 +1132,19 @@ input:-moz-placeholder {
 #single-close {
   top: 16px;
   right: 16px;
+  z-index: 99999;
 }
 #single-next {
-  top: 49%;
-  right: 16px;
+  padding: 16px;
+  width: 50%;
+  left: 50%;
+  height: 100%;
 }
 #single-prev {
-  top: 49%;
-  left: 16px;
+  padding: 16px;
+  width: 50%;
+  left: 0;
+  height: 100%;
 }
 #single-slider {
   position: relative;

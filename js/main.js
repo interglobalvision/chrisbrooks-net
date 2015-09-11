@@ -1,11 +1,6 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
 /* global $, jQuery, document, Modernizr, History */
 
-function l(data) {
-  'use strict';
-  console.log(data);
-}
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -26,12 +21,10 @@ var retina = Modernizr.highresdisplay,
 
   captionHeight = $('.single-slider-text').outerHeight(),
 
-  caption,
-  activeIndex,
   activeId,
   initSlide,
   State = History.getState(),
-  hashState = State.hash.slice(-1);
+  hashGalleryValue = parseInt(State.hash.substring(State.hash.indexOf('#') + 1));
 
 
 // FUNCTIONS
@@ -44,7 +37,7 @@ $(window).on('resize', function() {
   // LAZY IMAGES
 
 function lazyLoadImages(selector) {
-  var smallRetina = (largeImageThreshold / 2)
+  var smallRetina = (largeImageThreshold / 2);
 
   $(selector).each(function() {
     var $this = $(this);
@@ -248,13 +241,26 @@ var Slick = {
       nextArrow: '.slick-next',
     });
 
-    if (hashState > 1) {
-      initSlide = $('[data-index="' + hashState + '"]').attr('data-slick-index');
-      $('.js-slick-container').slick('slickGoTo',initSlide);
+    if (hashGalleryValue > 1) {
+      initSlide = $('[data-index="' + (hashGalleryValue - 1) + '"]').attr('data-slick-index');
+      $('.js-slick-container').slick('slickGoTo', (hashGalleryValue - 1));
+      window.location.hash = '';
     }
 
-    $('.js-next-slide').on('click', function() {
-      $('.js-slick-container').slick('slickNext');
+    // If gallery has length next arrow advances gallery until end then allows <a> link
+    $('#single-next').on('click', function(e) {
+      if ($('.js-slick-container').slick('slickCurrentSlide') !== ($('#single-next').data('gallery-length')-1)) {
+        e.preventDefault();
+        $('.js-slick-container').slick('slickNext');
+      }
+    });
+
+    // Prev moves gallery until first slide then allows <a> link
+    $('#single-prev').on('click', function(e) {
+      if ($('.js-slick-container').slick('slickCurrentSlide') !== 0) {
+        e.preventDefault();
+        $('.js-slick-container').slick('slickPrev');
+      }
     });
 
     $(window).resize( $.debounce( 250, function() {

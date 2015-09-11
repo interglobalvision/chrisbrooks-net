@@ -338,21 +338,27 @@ input:-moz-placeholder
 
 .single-nav
   position: absolute
-  z-index: 99999
+  z-index: 9999
+  box-sizing: border-box
   svg
     width: $font-size-basic
 
 #single-close
   top: $margin-small
   right: $margin-small
+  z-index: 99999
 
 #single-next
-  top: 49%
-  right: $margin-small
+  padding: $margin-small
+  width: 50%
+  left: 50%
+  height: 100%
 
 #single-prev
-  top: 49%
-  left: $margin-small
+  padding: $margin-small
+  width: 50%
+  left: 0
+  height: 100%
 
 #single-slider
   position: relative

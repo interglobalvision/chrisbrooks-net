@@ -11,10 +11,21 @@ if( have_posts() ) {
     $fig = get_post_meta( $post->ID, '_igv_fig', true );
     $title = get_the_title( $post );
     $nextPost = get_adjacent_post(null, null, false);
+    $prevPost = get_adjacent_post(null, null, true);
     if ($nextPost) {
       $nextLink = get_permalink($nextPost->ID);
     } else {
       $nextLink = home_url('list-of-works/');
+    }
+    if ($prevPost) {
+      $prevLength = get_post_meta( $prevPost->ID, '_igv_gallery_length', true );
+      if ($prevLength === '1') {
+        $prevLink = get_permalink($prevPost->ID);
+      } else {
+        $prevLink = get_permalink($prevPost->ID) . '#' . $prevLength;
+      }
+    } else {
+      $prevLink = home_url('list-of-works/');
     }
 ?>
 
@@ -27,6 +38,27 @@ if( have_posts() ) {
             <span class="font-italic">list of works</span>
           </a>
         </nav>
+
+        <nav id="single-next" class="single-nav" data-gallery-length="<?php echo $length; ?>">
+          <a href="<?php echo $nextLink; ?>">
+          <div class="u-holder">
+            <div class="u-align-right u-held">
+              <span>&#8594;</span>
+            </div>
+          </div>
+          </a>
+        </nav>
+
+        <nav id="single-prev" class="single-nav">
+          <a href="<?php echo $prevLink; ?>">
+            <div class="u-holder">
+              <div class="u-held">
+                  <span>&#8592;</span>
+              </div>
+            </div>
+          </a>
+        </nav>
+
         <div class="js-slick-container">
 <?php
         if ($images) {
